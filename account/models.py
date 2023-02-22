@@ -12,19 +12,17 @@ def set_name(model, *args, **kwargs):
 
 class Account(AbstractUser):
 
-    def set_uuid(self):
-        uuid = uuid4()
+    id = models.UUIDField(primary_key=True, default=uuid4)
+    profile_picture = models.ImageField(upload_to=set_name, null=True, blank=True)
+    last_name = models.CharField(max_length=50, null=False, blank=False)
+    first_name = models.CharField(max_length=50, blank=False, null=False)
+    email = models.EmailField(unique=True, null=False, blank=False)
+    is_active = models.BooleanField(default=True)
 
-        while(self.objects.filter(id=uuid).exists()):
-            uuid = uuid4()
-        
-        return uuid
 
-    id = models.UUIDField(primary_key=True, unique=True, null=False)
-    profile_picture = models.ImageField(upload_to=set_name)
+    REQUIRED_FIELDS = ["email", "last_name", "first_name"]
+    USERNAME_FIELD = "username"
 
     def save(self, *args, **kwargs):
-
-        self.id = self.set_uuid()
-
+        self.full_clean()
         return super().save(*args, **kwargs)

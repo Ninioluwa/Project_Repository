@@ -37,39 +37,52 @@ def year_validator(value):
     return value
         
 
+class Institution(models.Model):
+
+    id = models.UUIDField(primary_key=True, default=uuid4)
+    name = models.CharField(max_length=100, null=False, blank=False)
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        return super().save(*args, **kwargs)
+class Department(models.Model):
+
+    id = models.UUIDField(primary_key=True, default=uuid4)
+    name = models.CharField(max_length=100, null=False, blank=False)
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        return super().save(*args, **kwargs)
 class Project(models.Model):
 
-    id = models.CharField(max_length=130, primary_key=True, unique=True)
-    title = models.CharField(max_length=100)
-    user = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True)
+    def set_id():
+        return randint(int("1"*15), int("9"*15))
+
+    id = models.IntegerField(primary_key=True, default=set_id)
+    project_id = models.CharField(max_length=115, null=False, blank=False, unique=True)
+    title = models.CharField(max_length=100, unique=True, null=False, blank=False)
+    institution = models.ForeignKey(to=Institution, on_delete=models.CASCADE, related_name="projects", null=False, blank=False)
+    scholar = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True)
     description = models.TextField(null=False, blank=False)
     cover_page = models.ImageField(upload_to=set_cover_upload, null=True)
     document = models.FileField(upload_to=set_document_upload)
     url = models.URLField(null=True)
-    author = models.JSONField(null=False)
-    citation = models.TextField(null=False, blank=False)
     supervisor = models.CharField(max_length=50, null=False, blank=False)
     date_uploaded = models.DateTimeField(auto_now_add=True, null=False, blank=False)
     year_published = models.CharField(max_length=4,validators=[year_validator], null=False, blank=False)
+    views = models.PositiveIntegerField(default=0, null=False, blank=False)
+    plagiarism_score = models.FloatField(null=False, blank=False)
 
-    def set_id(self):
+    def set_project_id(self):
         title = self.title.replace(" ", "-").lower()
-        rand_id = randint(11111111, 99999999)
-
-        id = f"{title}-{rand_id}"
-
-        while(Project.objects.filter(id=id).exists()):
-            
-            rand_id = randint(11111111, 99999999)
-            id = f"{title}-{rand_id}"
-        
-        return id
+        return f"{title}-{self.id}"
             
 
     def save(self, **kwargs):
-        if not self.id:
-            self.id = self.set_id()
+        if not self.project_id:
+            self.id = self.set_project_id()
 
+        self.full_clean()
         return super().save(**kwargs)
 
 class Tag(models.Model):
@@ -78,14 +91,3 @@ class Tag(models.Model):
 
 
     
-class Institution(models.Model):
-
-    def set_uuid():
-        uuid = uuid4()
-
-        while(Institution.objects.exists(id=uuid).exists()):
-            uuid = uuid4()
-
-        return uuid
-    id = models.UUIDField(primary_key=True, default=set_uuid, unique=True, blank=False, null=False)
-    name = models.CharField(max_length=100, null=False, blank=False)

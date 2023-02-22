@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
 import repository.models
+from uuid import uuid4
 
 
 class Migration(migrations.Migration):
@@ -18,7 +19,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Institution',
             fields=[
-                ('id', models.UUIDField(default=repository.models.Institution.set_uuid, primary_key=True, serialize=False, unique=True)),
+                ('id', models.UUIDField(default=uuid4, primary_key=True, serialize=False, unique=True)),
                 ('name', models.CharField(max_length=100)),
             ],
         ),
