@@ -19,7 +19,7 @@ class AccountLoginForm(forms.Form):
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "class": "w-full px-2 py-4 mb-4 text-lg leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
+                "class": "w-full px-2 py-4 mb-4 text-lg leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline",
                 "placeholder": "Email/Username" 
                 }), 
         max_length=150, 
@@ -28,7 +28,7 @@ class AccountLoginForm(forms.Form):
     password = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
-                "class": "w-full px-3 py-4 mb-3 text-lg leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
+                "class": "w-full px-3 py-4 mb-3 text-lg leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline",
                 "placeholder": "Password"
                 }), 
         required=True, 
