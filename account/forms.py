@@ -1,18 +1,38 @@
 from django import forms
 from django.contrib.auth import get_user_model, authenticate, login
+from django.core.exceptions import ValidationError
 User = get_user_model()
 
 class AccountCreationForm(forms.ModelForm):
 
+    
+    confirm_password = forms.CharField()
     class Meta:
         model = User
         fields = [
             "username",
             "email",
             "password",
+            "confirm_password",
             "first_name",
             "last_name",
             ]
+        
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self.fields["firstname"].widget = forms.TextInput(
+            attrs={
+                "class": "w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline",
+                "placeholder": "First Name"
+            }
+        )
+    
+    def clean(self):
+        if self.cleaned_data["password"] != self.cleaned_data["confirm_password"]:
+            raise ValidationError("Passwords Must Match")
+        
+        self.cleaned_data.pop("confirm_password")
+        return self.cleaned_data
 
 class AccountLoginForm(forms.Form):
 
