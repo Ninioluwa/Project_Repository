@@ -20,7 +20,7 @@ class AccountCreationForm(forms.ModelForm):
         
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
-        self.fields["firstname"].widget = forms.TextInput(
+        self.fields["first_name"].widget = forms.TextInput(
             attrs={
                 "class": "w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline",
                 "placeholder": "First Name"
