@@ -42,6 +42,9 @@ class Institution(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4)
     name = models.CharField(max_length=100, null=False, blank=False)
 
+    def __str__(self):
+        return self.name
+        
     def save(self, *args, **kwargs):
         self.full_clean()
         return super().save(*args, **kwargs)
@@ -49,6 +52,9 @@ class Department(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid4)
     name = models.CharField(max_length=100, null=False, blank=False)
+
+    def __str__(self):
+        return self.name
 
     def save(self, *args, **kwargs):
         self.full_clean()
@@ -77,6 +83,8 @@ class Project(models.Model):
         title = self.title.replace(" ", "-").lower()
         return f"{title}-{self.id}"
             
+    def __str__(self):
+        return self.title
 
     def save(self, **kwargs):
         if not self.project_id:
@@ -89,5 +97,5 @@ class Tag(models.Model):
     name = models.CharField(max_length=30)
     projects = models.ManyToManyField(to=Project, related_name="tags")
 
-
-    
+    def __str__(self):
+        return self.name
