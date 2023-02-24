@@ -18,7 +18,8 @@
                 <div class="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none">
                     <h3 class="pt-4 text-2xl text-center">Create an Account!</h3>
                     
-                    <form method="" action="" class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
+                    <form method="post" action="" class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
+                        {% csrf_token %}
                         <div class="mb-4 lg:flex lg:justify-between">
                             <div class="mb-4 lg:mr-2 lg:mb-0">
                                 <label class="block mb-2 text-sm font-bold text-gray-700" for="first_name">
@@ -27,15 +28,10 @@
                                 {{form.first_name}}
                             </div>
                             <div class="lg:ml-2">
-                                <label class="block mb-2 text-sm font-bold text-gray-700" for="lastName">
+                                <label class="block mb-2 text-sm font-bold text-gray-700" for="last_name">
                                     Last Name
                                 </label>
-                                <input
-                                    class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline"
-                                    id="lastName"
-                                    type="text"
-                                    placeholder="Last Name"
-                                />
+                                {{form.last_name}}
                             </div>
 
                         </div>
@@ -45,24 +41,14 @@
                                 <label class="block mb-2 text-sm font-bold text-gray-700" for="username">
                                     Username
                                 </label>
-                                <input
-                                    class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline"
-                                    id="username"
-                                    type="text"
-                                    placeholder="Username"
-                                />
+                                {{form.username}}
                             </div>
                             <div class="mb-4">
                                
                                 <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
                                     Email Address
                                 </label>
-                                <input
-                                    class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline"
-                                    id="email"
-                                    type="email"
-                                    placeholder="user@gmail.com"
-                                />
+                                {{form.email}}
                             </div>
                         </div>
                         
@@ -71,47 +57,20 @@
                             <label class="block mb-2 text-sm font-bold text-gray-700" for="institution">
                                 Institution
                             </label>
-                            <select
-                                class="w-full px-3 py-2 mb-3 text-sm leading-tight focus:border-indigo-500 focus:outline-none bg-white text-black border rounded shadow focus:shadow-outline"
-                                id="institution" >
-                                <option value="">--------------</option>
-                                <option value="bu">Babcock University</option>
-                                <option value="unilag">University of Lagos</option>
-                                <option value="lasu">Lagos State University</option>
-                                <option value="cu">Covenant University</option>
-                                <option value="bu">Babcock University</option>
-                                <option value="unilag">University of Lagos</option>
-                                <option value="lasu">Lagos State University</option>
-                                <option value="cu">Covenant University</option>
-                                <option value="bu">Babcock University</option>
-                                <option value="unilag">University of Lagos</option>
-                                <option value="lasu">Lagos State University</option>
-                                <option value="cu">Covenant University</option>
-                            </select>
+                            {{form.institution}}
                         </div>
                         <div class="lg:flex lg:justify-between">
                             <div class="mb-4 lg:mr-2 lg:mb-4">
                                 <label class="block mb-2 text-sm font-bold text-gray-700" for="password">
                                     Password
                                 </label>
-                                <input
-                                    class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline"
-                                    id="password"
-                                    type="password"
-                                    placeholder="******************"
-                                />
-                                
+                               {{form.password}} 
                             </div>
                             <div class="lg:ml-2">
                                 <label class="block mb-2 text-sm font-bold text-gray-700" for="c_password">
                                     Confirm Password
                                 </label>
-                                <input
-                                    class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline"
-                                    id="c_password"
-                                    type="password"
-                                    placeholder="******************"
-                                />
+                                {{form.c_password}}
                             </div>
                         </div>
                             

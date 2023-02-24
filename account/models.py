@@ -4,6 +4,17 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
+class Institution(models.Model):
+
+    id = models.UUIDField(primary_key=True, default=uuid4)
+    name = models.CharField(max_length=100, null=False, blank=False)
+
+    def __str__(self):
+        return self.name
+        
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        return super().save(*args, **kwargs)
 
 def set_name(model, *args, **kwargs):
     username = model.username
@@ -18,6 +29,7 @@ class Account(AbstractUser):
     first_name = models.CharField(max_length=50, blank=False, null=False)
     email = models.EmailField(unique=True, null=False, blank=False)
     is_active = models.BooleanField(default=True)
+    institution = models.ForeignKey(to=Institution, null=False, blank=False, on_delete=models.CASCADE)
 
 
     REQUIRED_FIELDS = ["email", "last_name", "first_name"]

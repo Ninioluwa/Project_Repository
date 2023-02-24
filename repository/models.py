@@ -7,6 +7,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 
+from account.models import Institution
 User = get_user_model()
 
 def set_folder_name(model):
@@ -37,17 +38,6 @@ def year_validator(value):
     return value
         
 
-class Institution(models.Model):
-
-    id = models.UUIDField(primary_key=True, default=uuid4)
-    name = models.CharField(max_length=100, null=False, blank=False)
-
-    def __str__(self):
-        return self.name
-        
-    def save(self, *args, **kwargs):
-        self.full_clean()
-        return super().save(*args, **kwargs)
 class Department(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid4)
