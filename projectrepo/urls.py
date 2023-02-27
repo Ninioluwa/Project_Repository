@@ -21,5 +21,6 @@ from .views import IndexView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls')),
+    path('project/', include('repository.urls')),
     path('', IndexView.as_view(), name="home")
 ]

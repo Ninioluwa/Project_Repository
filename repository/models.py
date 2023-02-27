@@ -8,6 +8,7 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 
 from account.models import Institution
+
 User = get_user_model()
 
 def set_folder_name(model):
@@ -58,6 +59,7 @@ class Project(models.Model):
     project_id = models.CharField(max_length=115, null=False, blank=False, unique=True)
     title = models.CharField(max_length=100, unique=True, null=False, blank=False)
     institution = models.ForeignKey(to=Institution, on_delete=models.CASCADE, related_name="projects", null=False, blank=False)
+    department = models.ForeignKey(to=Department, on_delete=models.CASCADE, null=False, blank=False, related_name="projects")
     scholar = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True)
     description = models.TextField(null=False, blank=False)
     cover_page = models.ImageField(upload_to=set_cover_upload, null=True)
