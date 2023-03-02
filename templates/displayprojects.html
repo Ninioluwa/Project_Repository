@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css">
+    
+</head>
+<body>
+
+ 
+<!-- Section 1 -->
+<section class="w-full px-3 antialiased bg-indigo-600 lg:px-6">
+    <div class="mx-auto max-w-7xl">
+        <nav class="flex items-center w-full h-24 select-none" x-data="{ showMenu: false }">
+            <div class="relative flex flex-wrap items-center justify-between w-full h-24 mx-auto font-medium md:justify-center">
+                <a href="#_" class="w-1/4 py-4 pl-6 pr-4 md:pl-4 md:py-0">
+                    <span class="p-1 text-xl font-black leading-none text-white select-none"><span class="">BU|Repo</span><span class="text-indigo-600">.</span></span>
+                </a>
+                <div class="fixed top-0 left-0 z-40 items-center hidden w-full h-full p-3 text-xl bg-gray-900 bg-opacity-50 md:text-sm lg:text-base md:w-3/4 md:bg-transparent md:p-0 md:relative md:flex" :class="{'flex': showMenu, 'hidden': !showMenu }">
+                    <div class="flex-col w-full h-auto h-full overflow-hidden bg-white rounded-lg select-none md:bg-transparent md:rounded-none md:relative md:flex md:flex-row md:overflow-auto">
+                        <div class="flex flex-col items-center justify-center w-full h-full mt-12 text-center text-indigo-600 md:text-indigo-100 md:w-2/3 md:mt-0 md:flex-row md:items-center">
+                            <a href="index.html" class="inline-block px-4 py-2 mx-2 font-medium text-left text-indigo-600 md:text-white md:px-0 lg:mx-12 md:text-center">Home</a>
+                            <a href="#" class="inline-block px-0 px-4 py-2 mx-2 font-medium text-left md:px-0 hover:text-indigo-600 md:hover:text-white lg:mx-9 md:text-center">About</a>
+                            <a href="searchproject.html" class="inline-block px-0 px-4 py-2 mx-2 font-medium text-left md:px-0 hover:text-indigo-600 md:hover:text-white lg:mx-9 md:text-center">Projects</a>
+                            <a href="createproject.html" class="inline-block px-0 px-4 py-2 mx-2 font-medium text-left md:px-0 hover:text-indigo-600 md:hover:text-white lg:mx-9 md:text-center">Upload</a>
+                            <a href="login.html" class="md:hidden inline-block px-0 px-4 py-2 mx-2 font-medium text-left md:px-0 hover:text-indigo-600 md:hover:text-white lg:mx-9 md:text-center">Sign-in</a>
+                            <a href="register.html" class="md:hidden inline-block px-0 px-4 py-2 mx-2 font-medium text-left md:px-0 hover:text-indigo-600 md:hover:text-white lg:mx-3 md:text-center">Sign-up</a>
+                            <div class="flex flex-col items-center justify-end w-full h-full pt-4 md:w-1/3 md:hidden md:py-0">
+                                <a href="login.html" class="w-full pl-6 mr-0 text-indigo-200 hover:text-white md:pl-0 md:mr-3 lg:mr-5 md:w-auto">Sign In</a>
+                                <a href="register.html" class="inline-flex items-center justify-center px-4 py-2 mr-1 text-base font-medium leading-6 text-indigo-600 whitespace-no-wrap transition duration-150 ease-in-out bg-white border border-transparent hover:bg-white focus:outline-none focus:border-indigo-700 focus:shadow-indigo-NaN active:bg-indigo-700 rounded-none rounded-full">Sign Up</a>
+                            </div>
+                            
+                         </div>
+                         <div class=" flex flex-col items-center justify-end w-full h-full pt-4 md:w-1/3 md:flex-row md:py-0">
+                            <a href="login.html" class="w-full pl-6 mr-0 text-indigo-200 hover:text-white md:pl-0 md:mr-3 lg:mr-5 md:w-auto">Sign In</a>
+                            <a href="register.html" class="inline-flex items-center justify-center px-4 py-2 mr-1 text-base font-medium leading-6 text-indigo-600 whitespace-no-wrap transition duration-150 ease-in-out bg-white border border-transparent hover:bg-white focus:outline-none focus:border-indigo-700 focus:shadow-indigo-NaN active:bg-indigo-700 rounded-none rounded-full">Sign Up</a>
+                        </div>
+                        
+                    </div>
+
+                    
+                </div>
+                <div @click="showMenu = !showMenu" class="absolute right-0 z-50 flex flex-col items-end w-10 h-10 p-2 mr-4 rounded-full cursor-pointer md:hidden hover:bg-gray-900 hover:bg-opacity-10 text-gray-100" :class="{ 'text-gray-400': showMenu, 'text-gray-100': !showMenu }">
+                    <svg class="w-6 h-6" x-show="!showMenu" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                        <path d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg class="w-6 h-6" x-show="showMenu" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </div>
+            </div>
+        </nav>
+    </div>
+</section>
+
+
+
+<!-- Search Bar -->
+<section class="px-3 mx-auto max-w-7xl ">
+    <div class="mt-4 pt-2 relative text-gray-600 lg:flex ">
+        <form action="">
+           
+            <select name="filter" id="filter" class="p-1 mr-2 h-10 border-2 rounded-lg bg-white text-gray-500 font-bold rounded-lg outline-none border-gray-300 focus:border-indigo-700">
+              <option class="hover:bg-gray-300" value="title">Title</option>
+              <option value="department">Course</option>
+              <option value="year">Year</option>
+              <option value="supervisor">Supervisor</option>
+              <option value="title">Tag</option>
+            </select>
+            
+
+        </form>
+
+        <div>
+            <input class="mb-2 border-2 border-gray-300 bg-white h-10 mr-4 px-5 pr-4 rounded-lg text-sm focus:border-indigo-700 hover:bg-indigo-100 outline-none"
+                type="search" name="search" placeholder="Search" size="33">
+            <button type="submit" class="absolute top-0 mt-5 mr-4 outline-none hover:bg-indigo-300 rounded-full">
+                <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
+                    viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve"
+                    width="512px" height="512px">
+                    <path
+                    d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
+                </svg>
+            </button>
+        </div>
+        
+
+    
+    </div>
+</section>
+
+
+<!-- Section 2 -->
+<section class="bg-white">
+    <div class="w-full py-6 mx-auto space-y-5 sm:py-8 md:py-12 sm:space-y-8 md:space-y-16 max-w-7xl">
+
+        <div class="flex flex-col items-center sm:px-5 md:flex-row">
+            <div class="w-full md:w-1/2">
+                <a href="#_" class="block">
+                    <img class="object-cover w-full h-full rounded-lg max-h-64 sm:max-h-96" src="../static/img/projects/pc1.jpg">
+                </a>
+            </div>
+            <!--Latest Project in the repository-->
+            <div class="flex flex-col items-start justify-center w-full h-full py-6 mb-6 md:mb-0 md:w-1/2">
+                <div class="flex flex-col items-start justify-center h-full space-y-3 transform md:pl-10 lg:pl-16 md:space-y-5">
+                    <div class="bg-pink-500 flex items-center pl-2 pr-3 py-1.5 leading-none rounded-full text-xs font-medium uppercase text-white inline-block">
+                        <svg class="w-3.5 h-3.5 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <span>Latest</span>
+                    </div>
+                    <!--Project Title-->
+                    <h1 class="text-4xl font-bold leading-none lg:text-5xl xl:text-6xl"><a href="#_">Hospital Management System</a></h1>
+                    <p class="pt-2 text-sm font-medium">by 
+                        <a href="#_" class="mr-1 underline">Author Ini</a> · <!--Authors name-->
+                        <span class="mx-1">April 23rd, 2021</span> ·          <!--Date uploaded-->
+                        <span class="mx-1 text-gray-600">My Tag Design</span>   <!--Project Tags-->
+                      
+                    </p>
+                    <div class="flex space-x-4">
+                        <div class=" flex items-center pl-2 pr-3 py-1.5 leading-none rounded-full text-xs font-bold uppercase inline-block">
+                            <img src="../static/img/projects/eye icon.svg" class="w-5 h-5 mr-2">
+                            <!--Number of views-->
+                            <span>10 Views</span>
+                        </div>
+                        <div class="bg-green-500 flex items-center px-3 py-1.5 leading-none rounded-full text-xs font-bold uppercase text-white inline-block">
+                            <!--Plagiarism Checker-->
+                            <span>15%</span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="flex grid grid-cols-12 pb-10 sm:px-5 gap-x-8 gap-y-16">
+
+            <!--Project Preview 1-->
+            <div class="flex flex-col items-start col-span-12 space-y-3 sm:col-span-6 xl:col-span-4">
+                <a href="#_" class="block">
+                    <!--Project Cover Image-->
+                    <img class="object-cover w-full mb-2 overflow-hidden rounded-lg shadow-sm max-h-56" src="../static/img/projects/pc2.jpg">
+                </a>
+                <div class="flex items-center space-x-4">
+                    <!--Project department-->
+                    <span class="bg-purple-500 px-3 py-1.5 leading-none rounded-full text-xs font-medium uppercase text-white inline-block">
+                        Computer Science
+                    </span>
+
+                    <div class="flex ">
+                       
+                        <div class="bg-green-500 flex items-center px-3 py-1.5 leading-none rounded-full text-xs font-bold text-white inline-block">
+                            <!--Plagiarism Score-->
+                            <span>15%</span>
+                        </div>
+                    </div>
+                </div>
+                <!--Project Title-->
+                <h2 class="text-lg font-bold sm:text-xl md:text-2xl text-justify">
+                    <a href="#_"> <!--Link to project detail-->
+                        Machine learning algorithm to predict the age of bulalablu using recall, precision score and arbitrary figures.
+                    </a>
+                </h2>
+                <!--Project Description-->
+                <p class="text-sm text-gray-500 text-justify w-full overflow-hidden">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et feugiat dui. Praesent at sagittis mi. Maecenas bibendum turpis id sollicitudin tincidunt. 
+                    Sed gravida libero vitae feugiat commodo. Etiam dui ligula, ullamcorper ac sodales a, facilisis eget erat. Donec id eros a justo consectetur laoreet. Donec
+                     cursus euismod lacus in gravida
+                </p>
+                <p class="pt-2 text-xs font-medium">
+                    <a href="#_" class="mr-1 underline">Tolu Hunter</a> · <!--Authors name-->
+                    <span class="mx-1">April 17, 2021</span> · <!--Date uploaded-->
+                    <span class="mx-1">10 Views</span> . <!--Project View Count-->
+                    <span class="mx-1 text-gray-600">Laptop</span>  <!--Project Tags-->
+                    
+                </p>
+            </div>
+
+            <!--Here can be deleted...-->
+            <div class="flex flex-col items-start col-span-12 space-y-3 sm:col-span-6 xl:col-span-4">
+                <a href="#_" class="block">
+                    <!--Project Cover Image-->
+                    <img class="object-cover w-full mb-2 overflow-hidden rounded-lg shadow-sm max-h-56" src="../static/img/projects/pc3.jpg">
+                </a>
+                <div class="flex items-center space-x-4">
+                    <!--Project department-->
+                    <span class="bg-purple-500 px-3 py-1.5 leading-none rounded-full text-xs font-medium uppercase text-white inline-block">
+                        Computer Science
+                    </span>
+
+                    <div class="flex ">
+                       
+                        <div class="bg-green-500 flex items-center px-3 py-1.5 leading-none rounded-full text-xs font-bold text-white inline-block">
+                            <!--Plagiarism Score-->
+                            <span>15%</span>
+                        </div>
+                    </div>
+                </div>
+                <!--Project Title-->
+                <h2 class="text-lg font-bold sm:text-xl md:text-2xl text-justify">
+                    <a href="#_"> <!--Link to project detail-->
+                        Machine learning algorithm to predict the age of bulalablu using recall, precision score and arbitrary figures.
+                    </a>
+                </h2>
+                <!--Project Description-->
+                <p class="text-sm text-gray-500 text-justify w-full overflow-hidden">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et feugiat dui. Praesent at sagittis mi. Maecenas bibendum turpis id sollicitudin tincidunt. 
+                    Sed gravida libero vitae feugiat commodo. Etiam dui ligula, ullamcorper ac sodales a, facilisis eget erat. Donec id eros a justo consectetur laoreet. Donec
+                     cursus euismod lacus in gravida
+                </p>
+                <p class="pt-2 text-xs font-medium">
+                    <a href="#_" class="mr-1 underline">Tolu Hunter</a> · <!--Authors name-->
+                    <span class="mx-1">April 17, 2021</span> · <!--Date uploaded-->
+                    <span class="mx-1">10 Views</span> . <!--Project View Count-->
+                    <span class="mx-1 text-gray-600">Laptop</span>  <!--Project Tags-->
+                    
+                </p>
+            </div>
+
+            <div class="flex flex-col items-start col-span-12 space-y-3 sm:col-span-6 xl:col-span-4">
+                <a href="#_" class="block">
+                    <!--Project Cover Image-->
+                    <img class="object-cover w-full mb-2 overflow-hidden rounded-lg shadow-sm max-h-56" src="../static/img/projects/pc2.jpg">
+                </a>
+                <div class="flex items-center space-x-4">
+                    <!--Project department-->
+                    <span class="bg-purple-500 px-3 py-1.5 leading-none rounded-full text-xs font-medium uppercase text-white inline-block">
+                        Computer Science
+                    </span>
+
+                    <div class="flex ">
+                       
+                        <div class="bg-green-500 flex items-center px-3 py-1.5 leading-none rounded-full text-xs font-bold text-white inline-block">
+                            <!--Plagiarism Score-->
+                            <span>15%</span>
+                        </div>
+                    </div>
+                </div>
+                <!--Project Title-->
+                <h2 class="text-lg font-bold sm:text-xl md:text-2xl text-justify">
+                    <a href="#_"> <!--Link to project detail-->
+                        Machine learning algorithm to predict the age of bulalablu using recall, precision score and arbitrary figures.
+                    </a>
+                </h2>
+                <!--Project Description-->
+                <p class="text-sm text-gray-500 text-justify w-full overflow-hidden">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et feugiat dui. Praesent at sagittis mi. Maecenas bibendum turpis id sollicitudin tincidunt. 
+                    Sed gravida libero vitae feugiat commodo. Etiam dui ligula, ullamcorper ac sodales a, facilisis eget erat. Donec id eros a justo consectetur laoreet. Donec
+                     cursus euismod lacus in gravida
+                </p>
+                <p class="pt-2 text-xs font-medium">
+                    <a href="#_" class="mr-1 underline">Tolu Hunter</a> · <!--Authors name-->
+                    <span class="mx-1">April 17, 2021</span> · <!--Date uploaded-->
+                    <span class="mx-1">10 Views</span> . <!--Project View Count-->
+                    <span class="mx-1 text-gray-600">Laptop</span>  <!--Project Tags-->
+                    
+                </p>
+            </div>
+
+            <!--Up until here-->
+           
+        </div>
+    </div>
+</section>
+
+<!-- Section 3 FOOTER -->
+
+
+<!-- AlpineJS Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.0/alpine.js"></script>
+
+</body>
+</html>
