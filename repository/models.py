@@ -19,15 +19,26 @@ def set_folder_name(model):
     return folder
 
 
-def set_cover_upload(model, *args, **kwargs):
+def set_cover_upload(model, filename):
     folder = set_folder_name(model)
-    return os.path.join(folder, "coverpage")
+    extension = filename.split(".")
+    if len(extension) > 1:
+        extension = extension[-1]
+    else:
+        extension = ""
+
+    return os.path.join(folder, f"coverpage.{extension}")
 
 
 def set_document_upload(model, filename):
     folder = set_folder_name(model)
+    extension = filename.split(".")
+    if len(extension) > 1:
+        extension = extension[-1]
+    else:
+        extension = ""
 
-    return os.path.join(folder, "project")
+    return os.path.join(folder, f"project.{extension}")
 
 
 def year_validator(value):
@@ -72,14 +83,15 @@ class Project(models.Model):
     project_id = models.CharField(
         max_length=115, null=False, blank=False, unique=True)
     title = models.CharField(
-        max_length=100, unique=True, null=False, blank=False)
+        max_length=100, null=False, blank=False)
     institution = models.ForeignKey(
         to=Institution, on_delete=models.CASCADE, related_name="projects", null=False, blank=False)
     department = models.ForeignKey(
         to=Department, on_delete=models.CASCADE, null=False, blank=False, related_name="projects")
     scholar = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True)
     description = models.TextField(null=False, blank=False)
-    cover_page = models.ImageField(upload_to=set_cover_upload, null=True)
+    cover_page = models.ImageField(
+        upload_to=set_cover_upload, null=False, blank=False)
     document = models.FileField(upload_to=set_document_upload)
     url = models.URLField(null=True)
     supervisor = models.CharField(max_length=50, null=False, blank=False)
@@ -102,5 +114,4 @@ class Project(models.Model):
         if not self.project_id:
             self.project_id = self.set_project_id()
 
-        self.full_clean()
         return super().save(**kwargs)

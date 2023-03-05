@@ -1,35 +1,42 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logout</title>
     <link rel="stylesheet" href="{% static '/css/style.css' %}">
 </head>
-    <body>
 
-            <div class="h-screen bg-indigo-100 flex justify-center items-center">
-                <form class="">
-                  
-                    <div class="mx-auto block max-w-lg p-12 bg-indigo-500 border border-gray-300 rounded-3xl shadow-2xl ">
-                        <h6 class="mb-12 text-xl font-bold tracking-tight text-white text-center">Are you sure <br> you want to logout?</h6>
-                        
-                        <div class="text-center flex justify-center items-center space-between">
-                            <button class="hover:bg-indigo-400 mr-8 text-white font-bold py-2 px-3 w-28 rounded-full" type="submit" name="cancel">
-                                Cancel
-                            </button>
-            
-                            <button class="bg-white hover:bg-indigo-700  hover:text-white text-indigo-500 font-bold py-2 px-3 w-28 rounded-full" type="submit" name="logout">
-                                Logout
-                            </button>
-                        </div>
-                    </div>
+<body>
 
-                    
-                    
-                </form>
+    <div class="h-screen bg-indigo-100 flex justify-center items-center">
+        <form method="post" action="{% url 'logout' %}" class="">
+            {% csrf_token %}
+
+            <div class="mx-auto block max-w-lg p-12 bg-indigo-500 border border-gray-300 rounded-3xl shadow-2xl ">
+                <h6 class="mb-12 text-xl font-bold tracking-tight text-white text-center">Are you sure <br> you want to
+                    logout?</h6>
+
+                <div class="text-center flex justify-center items-center space-between">
+                    <button class="hover:bg-indigo-400 mr-8 text-white font-bold py-2 px-3 w-28 rounded-full"
+                        type="submit" name="cancel">
+                        Cancel
+                    </button>
+
+                    <button
+                        class="bg-white hover:bg-indigo-700  hover:text-white text-indigo-500 font-bold py-2 px-3 w-28 rounded-full"
+                        type="submit" name="logout">
+                        Logout
+                    </button>
+                </div>
             </div>
-    </body>
-</html>
 
+
+
+        </form>
+    </div>
+</body>
+
+</html>

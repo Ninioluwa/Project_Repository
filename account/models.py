@@ -11,26 +11,36 @@ class Institution(models.Model):
 
     def __str__(self):
         return self.name
-        
+
     def save(self, *args, **kwargs):
         self.full_clean()
         return super().save(*args, **kwargs)
+
 
 def set_name(model, *args, **kwargs):
     username = model.username
     id = model.id
     return os.path.join("media", "profile-picture", f"{username}-{id}")
 
+
 class Account(AbstractUser):
 
     id = models.UUIDField(primary_key=True, default=uuid4)
-    profile_picture = models.ImageField(upload_to=set_name, null=True, blank=True)
+    profile_picture = models.ImageField(
+        upload_to=set_name, null=True, blank=True)
     last_name = models.CharField(max_length=50, null=False, blank=False)
     first_name = models.CharField(max_length=50, blank=False, null=False)
     email = models.EmailField(unique=True, null=False, blank=False)
     is_active = models.BooleanField(default=True)
-    institution = models.ForeignKey(to=Institution, null=False, blank=False, on_delete=models.CASCADE)
+    institution = models.ForeignKey(
+        to=Institution, null=False, blank=False, on_delete=models.CASCADE)
 
+    @property
+    def get_full_name(self):
+        return f'{self.last_name} {self.first_name}'
+
+    def __str__(self):
+        return self.get_full_name
 
     REQUIRED_FIELDS = ["email", "last_name", "first_name"]
     USERNAME_FIELD = "username"
