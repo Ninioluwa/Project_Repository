@@ -4,8 +4,8 @@
 {% block content %}
 <!-- Search Bar -->
 <section class="px-3 mx-auto max-w-7xl ">
-    <div class="mt-4 pt-2 relative text-gray-600 lg:flex ">
-        <form action="{% url 'display-projects' %}">
+    <div class="mt-4 pt-2 relative text-gray-600 ">
+        <form action="{% url 'display-projects' %}" class="lg:flex">
             <select name="filter" id="filter"
                 class="p-1 mr-2 h-10 border-2 rounded-lg bg-white text-gray-500 font-bold rounded-lg outline-none border-gray-300 focus:border-indigo-700">
                 <option class="hover:bg-gray-300" value="title">Title</option>
