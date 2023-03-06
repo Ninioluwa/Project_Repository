@@ -11,7 +11,7 @@
   </head>
   <body>
 
-    <!-- navbar -->
+<!-- navbar -->
  
 <!-- Section 1 -->
 <section class="w-full px-3 antialiased bg-indigo-600 lg:px-6">
@@ -59,28 +59,33 @@
     </section>
 
 <!--Form-->
-<section class="flex justify-center items-center mb-32">
-    <!-- Container -->
+<section class="flex justify-center mb-32">
+   
     <div class="container  ">
         <div class="flex justify-center px-6 my-12">
-            <!-- Row -->
-            <div class="w-full xl:w-3/4 lg:w-full flex">
-                <!-- Col -->
+            
+            <div class="w-3/4 xl:w-3/4 flex">
                 
-                <!-- Col -->
-                <div class="w-full lg:w-full bg-white p-5 rounded-lg lg:rounded-l-none">
+                <div class="lg:w-full sm:w-3/4">
                     <h3 class="pt-4 text-2xl text-center">Update Your Profile, {{user.username}}!</h3>
                     
-                    <form method="" action="" class="flex space-x-20 px-8 pt-6 pb-8 mb-4 bg-white rounded">
+                    <form method="" action="" class="mt-8">
                         
-                        <div class="sm:mx-auto md:flex justify-between lg:w-4/6 space-x-4 lg:block">
-                            <div class="lg:ml-4">
-                                    <!-- First and Last Names -->
+                        <div class="mx-auto flex justify-between lg:w-4/6 space-x-4 ">
+
+                            <div >
+                                <img class="w-24 h-24 mt-6 rounded-full border" src="../static/img/home/avatar.png"  />   
+                            </div>
+
+                            <div>
+                                <div class="lg:ml-4">
+                                    
                                     <p class="mt-8 text-xl">User Details</p>
                                     <hr class="mb-6 border-t" />
-                                    
+
+                                    <!-- First and Last Names -->
                                     <div class="mb-4 lg:flex justify-between lg:space-x-5">
-                                        <div class="mb-4 lg:w-3/4 lg:mb-4">
+                                        <div class="mb-4 lg:w-3/4">
                                             <label class="block mb-2 text-sm font-bold text-gray-700" for="firstName">
                                                 First Name
                                             </label>
@@ -91,7 +96,7 @@
                                                 placeholder="First Name"
                                             />
                                         </div>
-                                        <div class="mb-4 lg:w-3/4 lg:mb-4">
+                                        <div class="mb-4 lg:w-3/4">
                                             <label class="block mb-2 text-sm font-bold text-gray-700" for="lastName">
                                                 Last Name
                                             </label>
@@ -103,178 +108,111 @@
                                             />
                                         </div>
                                     </div>
-                            
+                                    <!--End First and Last Names -->
                             
                                 <!-- Email and Institution -->
-                                <div class="mb-4 lg:flex justify-between lg:space-x-5">
-                                    <div class="mb-4 lg:w-3/4 lg:mb-4">
-                                
-                                        <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
-                                            Email
-                                        </label>
-                                        <input
-                                            class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                            id="email"
-                                            type="email"
-                                            placeholder="Email"
-                                        />
+                                    <div class="mb-4 lg:flex justify-between lg:space-x-5">
+                                        <div class="mb-4 lg:w-3/4">
+                                    
+                                            <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
+                                                Email
+                                            </label>
+                                            <input
+                                                class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                                id="email"
+                                                type="email"
+                                                placeholder="Email"
+                                            />
+                                        </div>
+
+                                        <div class="w-80 mb-4 lg:w-3/4">
+                                            <!--Change to select field-->
+                                            <label class="block mb-2 text-sm font-bold text-gray-700" for="institution">
+                                                Institution
+                                            </label>
+                                            <input
+                                                class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                                id="institution"
+                                                type="institution"
+                                                placeholder="Institution"
+                                            />
+                                        </div>
+                                        <!--End Email and Institution -->
+                                       
                                     </div>
 
-                                    <div class="w-80 mb-4 lg:w-3/4 lg:mb-4">
-                                    
-                                        <label class="block mb-2 text-sm font-bold text-gray-700" for="institution">
-                                            Institution
-                                        </label>
-                                        <input
-                                            class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                            id="institution"
-                                            type="institution"
-                                            placeholder="Institution"
-                                        />
-                                    </div>
-                                    <div class="lg:hidden">
-                                        <p class="mt-4 text-xl">Update Profileeee Picture</p>
-                                        <hr class="mb-6 border-t" />
-                                        <div>
-                                            <label class="block mb-2 text-sm font-bold text-gray-700" for="profile_picture">Profile Picture
-                                                <span class="help-block text-sm text-red-500">&nbsp; &nbsp; *JPG, PNG </span>
-                                            </label>
-                                            <input class="block w-full text-sm text-gray-900 bg-indigo-100 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" id="doc_img_upload" type="file" accept=".png, .jpg">
+                                    <!--Update Profile Picture-->
+                                    <div>
+                                        <div class="">
+                                            <p class="mt-4 text-xl">Update Profileeee Picture</p>
+                                            <hr class="mb-6 border-t" />
+                                            <div>
+                                                <label class="block mb-2 text-sm font-bold text-gray-700" for="profile_picture">Profile Picture
+                                                    <span class="help-block text-sm text-red-500">&nbsp; &nbsp; *JPG, PNG </span>
+                                                </label>
+                                                <input class="block w-full text-sm text-gray-900 bg-indigo-100 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" id="doc_img_upload" type="file" accept=".png, .jpg">
+                                            </div>
                                         </div>
                                     </div>
-                                    
-                                </div>
-                            </div>
-                        
-                            <!--Mobile View-->
-                            <div class="lg:hidden">
-                              
-                                <p class="mt-8 text-xl">Change Password</p>
-                                    <hr class="mb-6 border-t" />
-                                <div class="mb-4 lg:flex lg:justify-between">
-                                    <div class="mb-4 lg:mr-2 lg:mb-4">
-                                        <label class="block mb-2 text-sm font-bold text-gray-700" for="password">
-                                            Current Password
-                                        </label>
-                                        <input
-                                            class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                            id="password"
-                                            type="password"
-                                            placeholder="******************"
-                                        /> 
-                                    </div>
-                                    
-                                    <div class="lg:ml-2">
-                                        <label class="block mb-2 text-sm font-bold text-gray-700" for="n_password">
-                                            New Password
-                                        </label>
-                                        <input
-                                            class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                            id="n_password"
-                                            type="password"
-                                            placeholder="******************"
-                                        />
-                                    </div>
+                                    <!--End Update Profile Picture-->
 
-                                    <div class="lg:ml-2">
-                                        <label class="block mb-2 text-sm font-bold text-gray-700" for="c_password">
-                                            Confirm Password
-                                        </label>
-                                        <input
-                                            class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                            id="c_password"
-                                            type="password"
-                                            placeholder="******************"
-                                        />
-                                    </div>
+                                    <!--Change Password-->
+                                    <div>
+                                        <p class="mt-8 text-xl">Change Password</p>
+                                        <hr class="mb-6 border-t" />
+                                        <div class="mb-4 lg:flex lg:justify-between">
+                                            <div class="mb-4 lg:mr-2 lg:mb-4">
+                                                <label class="block mb-2 text-sm font-bold text-gray-700" for="password">
+                                                    Current Password
+                                                </label>
+                                                <input
+                                                    class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                                    id="password"
+                                                    type="password"
+                                                    placeholder="******************"
+                                                /> 
+                                            </div>
 
-                                    
-                                </div>
-                                <div class="mb-6 text-center">
-                                    <button
-                                        class="w-full px-4 py-2 font-bold text-white bg-indigo-500 rounded-full focus:outline-none focus:shadow-outline"
-                                        type="submit"
-                                    >
-                                        Save Changes
-                                    </button>
-                                </div>
-                                <hr class="bottom-0 border-t" />
-                            </div>
-                            <!--Large Screen-->
-                            <div class="hidden lg:block">
-                                <p class="mt-4 text-xl">Update Profile Picture</p>
-                                <hr class="mb-6 border-t" />
+                                            <div class="lg:ml-2">
+                                                <label class="block mb-2 text-sm font-bold text-gray-700" for="n_password">
+                                                    New Password
+                                                </label>
+                                                <input
+                                                    class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                                    id="n_password"
+                                                    type="password"
+                                                    placeholder="******************"
+                                                />
+                                            </div>
 
-                                <div>
-                                    <label class="block mb-2 text-sm font-bold text-gray-700" for="profile_picture">Profile Picture
-                                        <span class="help-block text-sm text-red-500">&nbsp; &nbsp; *JPG, PNG </span>
-                                    </label>
-                                    <input class="block w-full text-sm text-gray-900 bg-indigo-50 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" id="doc_img_upload" type="file" accept=".png, .jpg">
-                                </div>
+                                            <div class="lg:ml-2">
+                                                <label class="block mb-2 text-sm font-bold text-gray-700" for="c_password">
+                                                    Confirm Password
+                                                </label>
+                                                <input
+                                                    class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                                    id="c_password"
+                                                    type="password"
+                                                    placeholder="******************"
+                                                />
+                                            </div>
 
-                                <p class="mt-8 text-xl">Change Password</p>
-                                    <hr class="mb-6 border-t" />
-                                <div class="mb-4 lg:flex lg:justify-between">
-                                    <div class="mb-4 lg:mr-2 lg:mb-4">
-                                        <label class="block mb-2 text-sm font-bold text-gray-700" for="password">
-                                            Current Password
-                                        </label>
-                                        <input
-                                            class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                            id="password"
-                                            type="password"
-                                            placeholder="******************"
-                                        />
-                                    </div>
-                                    
-                                    <div class="lg:ml-2">
-                                        <label class="block mb-2 text-sm font-bold text-gray-700" for="n_password">
-                                            New Password
-                                        </label>
-                                        <input
-                                            class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                            id="n_password"
-                                            type="password"
-                                            placeholder="******************"
-                                        />
-                                    </div>
-                                    
-                                    <div class="lg:ml-2">
-                                        <label class="block mb-2 text-sm font-bold text-gray-700" for="c_password">
-                                            Confirm Password
-                                        </label>
-                                        <input
-                                            class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                            id="c_password"
-                                            type="password"
-                                            placeholder="******************"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            
+                                        </div>
 
-                            <div class="mb-6 text-center hidden lg:block">
-                                <button
-                                    class="w-full px-4 py-2 font-bold text-white bg-indigo-500 rounded-full focus:outline-none focus:shadow-outline"
-                                    type="submit"
-                                >
-                                    Save Changes
-                                </button>
-                            </div>
-                            <hr class="bottom-0 border-t" />
-                        </div>
-                        
-                        <div class = "hidden lg:block ml-20 mt-12">
-                            <img class="w-64 h-64 absolute rounded-full" src="../static/img/home/avatar.png"  />
-                            
+                                    </div>
+                                    <!--End Change Password-->
+
+                                    <div class="mb-6 text-center">
+                                        <button
+                                            class="w-full px-4 py-2 font-bold text-white bg-indigo-500 rounded-full focus:outline-none focus:shadow-outline"
+                                            type="submit"
+                                        >
+                                            Save Changes
+                                        </button>
+                                    </div>
+                                    <hr class="bottom-0 border-t" />
                             </div>
                         </div>
-
-                            
-                            
-                           
-                         
                     </form>
                 </div>
             </div>
@@ -321,5 +259,5 @@
 
 
 
-    </body>
-    </html>
+</body>
+</html>
