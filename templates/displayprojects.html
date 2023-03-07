@@ -46,7 +46,7 @@
             <div class="w-full md:w-1/2">
                 <a href="#_" class="block">
                     <img class="object-cover w-full h-full rounded-lg max-h-64 sm:max-h-96"
-                        src="{% static 'img/projects/pc1.jpg' %}">
+                        src="{{latest.cover_page.url}}">
                 </a>
             </div>
             <!--Latest Project in the repository-->
@@ -64,12 +64,16 @@
                         <span>Latest</span>
                     </div>
                     <!--Project Title-->
-                    <h1 class="text-4xl font-bold leading-none lg:text-5xl xl:text-6xl"><a href="#_">Hospital Management
-                            System</a></h1>
+                    <h1 class="text-4xl font-bold leading-none lg:text-5xl xl:text-6xl"><a
+                            href="#_">{{latest.title}}</a></h1>
                     <p class="pt-2 text-sm font-medium">by
-                        <a href="#_" class="mr-1 underline">Author Ini</a> · <!--Authors name-->
-                        <span class="mx-1">April 23rd, 2021</span> · <!--Date uploaded-->
-                        <span class="mx-1 text-gray-600">My Tag Design</span> <!--Project Tags-->
+                        <a href="#_" class="mr-1 underline">Author {{latest.scholar}}</a> · <!--Authors name-->
+                        <span class="mx-1">{{latest.date_uploaded}}</span> · <!--Date uploaded-->
+                        <span class="mx-1 text-gray-600">
+                            {% for tag in latest.tags.all %}
+                            {{tag.name}}
+                            {% endfor %}
+                        </span> <!--Project Tags-->
 
                     </p>
                     <div class="flex space-x-4">
@@ -77,12 +81,12 @@
                             class=" flex items-center pl-2 pr-3 py-1.5 leading-none rounded-full text-xs font-bold uppercase inline-block">
                             <img src="{% static 'img/projects/eye icon.svg' %}" class="w-5 h-5 mr-2">
                             <!--Number of views-->
-                            <span>10 Views</span>
+                            <span>{{latest.views}} Views</span>
                         </div>
                         <div
                             class="bg-green-500 flex items-center px-3 py-1.5 leading-none rounded-full text-xs font-bold uppercase text-white inline-block">
                             <!--Plagiarism Checker-->
-                            <span>15%</span>
+                            <span>{{latest.plagiarism_score}}%</span>
                         </div>
                     </div>
 
@@ -95,8 +99,7 @@
             <div class="flex flex-col items-start col-span-12 space-y-3 sm:col-span-6 xl:col-span-4">
                 <a href="#_" class="block">
                     <!--Project Cover Image-->
-                    <img class="object-fit mb-2 rounded-lg shadow-sm h-64 w-96"
-                        src={{project.cover_page.url}}>
+                    <img class="object-fit mb-2 rounded-lg shadow-sm h-64 w-96" src={{project.cover_page.url}}>
                 </a>
                 <div class=" flex items-center space-x-4">
                     <!--Project department-->
@@ -104,9 +107,9 @@
                         class="bg-purple-500 px-3 py-1.5 leading-none rounded-full text-xs font-medium uppercase text-white inline-block">
                         {{project.department}}
                     </span>
-    
+
                     <div class="flex ">
-    
+
                         <div
                             class="bg-green-500 flex items-center px-3 py-1.5 leading-none rounded-full text-xs font-bold text-white inline-block">
                             <!--Plagiarism Score-->
@@ -133,56 +136,48 @@
                         {{tag.name}}
                         {% endfor %}
                     </span> <!--Project Tags-->
-    
+
                 </p>
             </div>
             {% endfor %}
         </div>
-       
+
 
 
     </div>
-    {% if projects.has_other_pages %}
-    <ul class="pagination">
-        {% if projects.has_previous %}
-        <li><a href="?page={{ projects.previous_page_number }}">&laquo;</a></li>
-        {% else %}
-        <li class="disabled"><span>&laquo;</span></li>
-        {% endif %}
-        {% for i in projects.paginator.page_range %}
-        {% if projects.number == i %}
-        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-        {% else %}
-        <li><a href="?page={{ i }}">{{ i }}</a></li>
-        {% endif %}
-        {% endfor %}
-        {% if projects.has_next %}
-        <li><a href="?page={{ projects.next_page_number }}">&raquo;</a></li>
-        {% else %}
-        <li class="disabled"><span>&raquo;</span></li>
-        {% endif %}
-    </ul>
-    {% endif %}
 
+    {% if page_obj.has_other_pages %}
     <nav class="flex justify-center mb-12">
         <ul class="inline-flex -space-x-px">
-          <li>
-            <a href="#" class="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700">Previous</a>
-          </li>
-          <li>
-            <a href="#" class="px-3 py-2 text-indigo-600 border border-gray-300 bg-indigo-50 hover:bg-indigo-100 hover:text-indigo-700">1</a> <!--Styling for current page-->
-          </li>
-          <li>
-            <a href="#" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">2</a>
-          </li>
-          <li>
-            <a href="#" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">3</a>
-          </li>
-          <li>
-            <a href="#" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
-          </li>
+            {% if page_obj.has_previous %}
+            <li>
+                <a href="?page={{ page_obj.previous_page_number }}"
+                    class="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700">Previous</a>
+            </li>
+            {% endif %}
+            {% for i in page_obj.paginator.page_range %}
+            {% if page_obj.number == i %}
+            <li>
+                <a href="#"
+                    class="px-3 py-2 text-indigo-600 border border-gray-300 bg-indigo-50 hover:bg-indigo-100 hover:text-indigo-700">{{i}}</a>
+                <!--Styling for current page-->
+            </li>
+            {% else %}
+            <li>
+                <a href="?page={{ i }}"
+                    class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{{i}}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+            <li>
+                <a href="?page={{ page_obj.next_page_number }}"
+                    class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+            </li>
+            {% endif %}
         </ul>
-      </nav>
+    </nav>
+    {% endif %}
 
 
 </section>

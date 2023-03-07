@@ -26,7 +26,7 @@ class DisplayProjectView(LoginRequiredMixin, generic.ListView):
 
     context_object_name = "projects"
     template_name = "displayprojects.html"
-    paginate_by = 10
+    paginate_by = 9
 
     def get_queryset(self):
         filter = self.request.GET.get("filter", None)
@@ -46,7 +46,7 @@ class DisplayProjectView(LoginRequiredMixin, generic.ListView):
             return Project.objects.all()
 
         if filter == "year":
-            query = Project.objects.filter(year=search)
+            query = Project.objects.filter(year_published=search)
 
         elif filter == "title":
             query = Project.objects.filter(title__icontains=search)
@@ -59,6 +59,13 @@ class DisplayProjectView(LoginRequiredMixin, generic.ListView):
                 supervisor__icontains=search)
 
         return query
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["latest"] = Project.objects.all().order_by(
+            'date_uploaded').last()
+
+        return context
 
     @csrf_exempt
     def get(self, request, *args, **kwargs):
