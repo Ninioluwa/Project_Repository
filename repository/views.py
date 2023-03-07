@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.decorators.csrf import csrf_exempt
@@ -70,3 +70,17 @@ class DisplayProjectView(LoginRequiredMixin, generic.ListView):
     @csrf_exempt
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
+
+
+class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
+
+    template_name = 'projectdetail.html'
+    context_object_name = 'project'
+
+    def get_object(self):
+        id = self.kwargs.get("id", None)
+
+        if not id:
+            pass
+
+        return get_object_or_404(Project, id=id)

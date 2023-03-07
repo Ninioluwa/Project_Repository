@@ -5,14 +5,24 @@
 
 <!--Alert for Error-->
 <div class="flex justify-center relative z-10">
-    <div class="flex p-4 mb-4 text-red-800 border-t-4 border-red-400 bg-red-100 absolute" >
-        <svg class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+    <div class="flex p-4 mb-4 text-red-800 border-t-4 border-red-400 bg-red-100 absolute">
+        <svg class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                clip-rule="evenodd"></path>
+        </svg>
         <div class="ml-3 text-sm font-medium mr-4">
-          Error oo, helpp. There's squirrels in my pantsss.
+            Error oo, helpp. There's squirrels in my pantsss.
         </div>
-        <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8">
-          <span class="sr-only">Dismiss</span>
-          <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        <button type="button"
+            class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8">
+            <span class="sr-only">Dismiss</span>
+            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"></path>
+            </svg>
         </button>
     </div>
 </div>
@@ -62,7 +72,7 @@
 
         <div class="flex flex-col items-center sm:px-5 md:flex-row">
             <div class="w-full md:w-1/2">
-                <a href="#_" class="block">
+                <a href="{% url 'project-detail' id=latest.id %}" class="block">
                     <img class="object-cover w-full h-full rounded-lg max-h-64 sm:max-h-96"
                         src="{{latest.cover_page.url}}">
                 </a>
@@ -83,9 +93,10 @@
                     </div>
                     <!--Project Title-->
                     <h1 class="text-4xl font-bold leading-none lg:text-5xl xl:text-6xl"><a
-                            href="#_">{{latest.title}}</a></h1>
+                            href="{% url 'project-detail' id=latest.id %}">{{latest.title}}</a></h1>
                     <p class="pt-2 text-sm font-medium">by
-                        <a href="#_" class="mr-1 underline">{{latest.scholar}}</a> · <!--Authors name-->
+                        <a href="#" class="mr-1 underline">{{latest.scholar}}</a>
+                        · <!--Authors name-->
                         <span class="mx-1">{{latest.date_uploaded}}</span> · <!--Date uploaded-->
                         <span class="mx-1 text-gray-600">
                             {% for tag in latest.tags.all %}
@@ -115,7 +126,7 @@
         <div class="flex grid grid-cols-12 pb-10 sm:px-5 gap-x-8 gap-y-16">
             {% for project in projects %}
             <div class="flex flex-col items-start col-span-12 space-y-3 sm:col-span-6 xl:col-span-4">
-                <a href="#_" class="block">
+                <a href="{% url 'project-detail' id=project.id %}" class="block">
                     <!--Project Cover Image-->
                     <img class="object-fit mb-2 rounded-lg shadow-sm h-64 w-96" src={{project.cover_page.url}}>
                 </a>
@@ -137,7 +148,7 @@
                 </div>
                 <!--Project Title-->
                 <h2 class="text-lg font-bold sm:text-xl md:text-2xl text-justify">
-                    <a href="#_"> <!--Link to project detail-->
+                    <a href="{% url 'project-detail' id=project.id %}"> <!--Link to project detail-->
                         {{project.title}}
                     </a>
                 </h2>

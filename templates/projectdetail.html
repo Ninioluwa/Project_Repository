@@ -46,7 +46,7 @@
             <div class="w-full md:w-1/2">
                 <a href="#_" class="block">
                     <img class="object-cover w-full h-full rounded-lg max-h-64 sm:max-h-96"
-                        src="{% static 'img/projects/pc1.jpg' %}">
+                        src="{{project.cover_page.url}}">
                 </a>
             </div>
             <!--Latest Project in the repository-->
@@ -64,12 +64,17 @@
                         <span>Latest</span>
                     </div>
                     <!--Project Title-->
-                    <h1 class="text-4xl font-bold leading-none lg:text-5xl xl:text-6xl"><a href="#_">Hospital Management
-                            System</a></h1>
+                    <h1 class="text-4xl font-bold leading-none lg:text-5xl xl:text-6xl"><a
+                            href="#_">{{project.title}}</a></h1>
                     <p class="pt-2 text-sm font-medium">by
-                        <a href="#_" class="mr-1 underline">Author Ini</a> · <!--Authors name-->
-                        <span class="mx-1">April 23rd, 2021</span> · <!--Date uploaded-->
-                        <span class="mx-1 text-gray-600">My Tag Design</span> <!--Project Tags-->
+                        <a href="#_" class="mr-1 underline">Author {{project.scholar.first_name}}</a> ·
+                        <!--Authors name-->
+                        <span class="mx-1">{{project.date_uploaded}}</span> · <!--Date uploaded-->
+                        <span class="mx-1 text-gray-600">
+                            {% for tag in project.tags.all %}
+                            {{tag.name}}
+                            {% endfor %}
+                        </span> <!--Project Tags-->
 
                     </p>
                     <div class="flex space-x-4">
@@ -77,12 +82,12 @@
                             class=" flex items-center pl-2 pr-3 py-1.5 leading-none rounded-full text-xs font-bold uppercase inline-block">
                             <img src="{% static 'img/projects/eye icon.svg' %}" class="w-5 h-5 mr-2">
                             <!--Number of views-->
-                            <span>10 Views</span>
+                            <span>{{project.views}} Views</span>
                         </div>
                         <div
                             class="bg-green-500 flex items-center px-3 py-1.5 leading-none rounded-full text-xs font-bold uppercase text-white inline-block">
                             <!--Plagiarism Checker-->
-                            <span>15%</span>
+                            <span>{{project.plagiarism_score}}%</span>
                         </div>
                     </div>
 
@@ -98,90 +103,97 @@
 
             <div class="w-full lg:mb-4 leading-relaxed">
                 <p class="font-bold text-2xl">Project Description</p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et feugiat dui. Praesent at sagittis mi. Maecenas bibendum turpis id sollicitudin tincidunt. Sed gravida libero vitae feugiat commodo. Etiam dui ligula, ullamcorper ac sodales a, facilisis eget erat. Donec id eros a justo consectetur laoreet. Donec cursus euismod lacus in gravida
-           
-            </div>
-                 
-        </div>
-            <div class="lg:ml-4 lg:flex justify-between lg:space-x-12">
-                <div class="w-full">
-                    <p class="font-bold text-2xl mb-2">Project Details</p>
-                    <div class="text-black p-2 font-bold">
-                        <p>Project Title</p>
-                    </div>
-                    <hr class="w-full">
-                    <div class=" p-2">
-                        <p>Hospital Management System</p>
-                    </div>
-                    <hr class="w-full">
-                    <div class="text-black p-2 font-bold">
-                        <p>Department</p>
-                    </div>
-                    <hr class="w-full">
-                    <div class="p-2">
-                        <p>Software Engineering</p>
-                    </div>
-                    <hr class="w-full">
-                    <div class="text-black p-2 font-bold">
-                        <p>Author</p>
-                    </div>
-                    <hr>
-                    <div class="p-2">
-                        <p>Tunde-Idowu Inioluwa</p> <!--Name of Scholar that uploaded the project-->
-                    </div>
-                    <hr>
-                    <div class="text-black p-2 font-bold">
-                        <p>Supervisor</p>
-                    </div>
-                    <hr>
-                    <div class="p-2">
-                        <p>Future Inioluwa</p>
-                    </div>
-                    <hr>
-                </div>
+                {{project.description}}
 
-                <div class="mt-2 lg:mt-0 w-full">
-                    <p class="hidden lg:block font-bold text-xl mb-2">&nbsp;</p>
-                    <div class="text-black p-2 font-bold">
-                        <p>Year Published</p>
-                    </div>
-                    <hr>
-                    <div class="p-2">
-                        <p>2023</p> <!--Year Published-->
-                        
-                    </div>
-                    <hr>
-                    <div class="text-black p-2 font-bold">
-                        <p>Link to Resources</p> <!--URL-->
-                    </div>
-                    <hr>
-                    <div class="p-2">
-                        <p>www.blergh.com</p>
-                    </div>
-                    <hr>
-                    <div class="text-black p-2 font-bold">
-                        <p>Tags</p>
-                    </div>
-                    <hr>
-                    <div class="p-2">
-                        <p>health, tech</p> <!--Separate tags with comma-->
-                    </div>
-                    <hr>
-                    <div class="text-black p-2 font-bold">
-                        <p>Resources</p>
-                    </div>
-                    <hr>
-                    <div class="p-2 flex justify-between">
-                        <p>managementSystem.pdf</p>
-                        <button type="submit" class="bg-indigo-500 ffocus:outline-none hover:bg-indigo-600 text-sm text-white font-bold py-1 px-4 rounded inline-flex items-center">
-                            <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
-                            <span>Download</span>
-                        </button>
-                    </div>
-                    <hr>
-                </div>
-            </div>  
+            </div>
+
         </div>
+        <div class="lg:ml-4 lg:flex justify-between lg:space-x-12">
+            <div class="w-full">
+                <p class="font-bold text-2xl mb-2">Project Details</p>
+                <div class="text-black p-2 font-bold">
+                    <p>Project Title</p>
+                </div>
+                <hr class="w-full">
+                <div class=" p-2">
+                    <p>{{project.title}}</p>
+                </div>
+                <hr class="w-full">
+                <div class="text-black p-2 font-bold">
+                    <p>Department</p>
+                </div>
+                <hr class="w-full">
+                <div class="p-2">
+                    <p>{{project.department.name}}</p>
+                </div>
+                <hr class="w-full">
+                <div class="text-black p-2 font-bold">
+                    <p>Author</p>
+                </div>
+                <hr>
+                <div class="p-2">
+                    <p>{{project.scholar.get_full_name}}</p> <!--Name of Scholar that uploaded the project-->
+                </div>
+                <hr>
+                <div class="text-black p-2 font-bold">
+                    <p>Supervisor</p>
+                </div>
+                <hr>
+                <div class="p-2">
+                    <p>{{project.supervisor}}</p>
+                </div>
+                <hr>
+            </div>
+
+            <div class="mt-2 lg:mt-0 w-full">
+                <p class="hidden lg:block font-bold text-xl mb-2">&nbsp;</p>
+                <div class="text-black p-2 font-bold">
+                    <p>Year Published</p>
+                </div>
+                <hr>
+                <div class="p-2">
+                    <p>{{project.year_published}}</p> <!--Year Published-->
+
+                </div>
+                <hr>
+                <div class="text-black p-2 font-bold">
+                    <p>Link to Resources</p> <!--URL-->
+                </div>
+                <hr>
+                <div class="p-2">
+                    <p>{{project.url}}</p>
+                </div>
+                <hr>
+                <div class="text-black p-2 font-bold">
+                    <p>Tags</p>
+                </div>
+                <hr>
+                <div class="p-2">
+                    <p>
+                        {% for tag in project.tags.all %}
+                        {{tag.name}}
+                        {% endfor %}
+                    </p> <!--Separate tags with comma-->
+                </div>
+                <hr>
+                <div class="text-black p-2 font-bold">
+                    <p>Resources</p>
+                </div>
+                <hr>
+                <div class="p-2 flex justify-between">
+                    <p>managementSystem.pdf</p>
+                    <button type="submit"
+                        class="bg-indigo-500 ffocus:outline-none hover:bg-indigo-600 text-sm text-white font-bold py-1 px-4 rounded inline-flex items-center">
+                        <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+                        </svg>
+                        <span>Download</span>
+                    </button>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
 
     </div>
 </section>
@@ -189,4 +201,5 @@
 {% endblock content %}
 
 </body>
+
 </html>
