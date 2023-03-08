@@ -41,6 +41,13 @@ class ProfileView(LoginRequiredMixin, generic.DetailView):
         return get_object_or_404(Account, id=id)
 
 
+# Must be User
+class UpdateProfileView(LoginRequiredMixin, generic.FormView):
+    template_name = "updateprofile.html"
+    form_class = AccountCreationForm
+    success_url = reverse_lazy("account-profile")
+
+
 class LogoutView(LoginRequiredMixin, generic.TemplateView):
 
     template_name = 'logout.html'
