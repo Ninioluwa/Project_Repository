@@ -88,7 +88,8 @@ class Project(models.Model):
         to=Institution, on_delete=models.CASCADE, related_name="projects", null=False, blank=False)
     department = models.ForeignKey(
         to=Department, on_delete=models.CASCADE, null=False, blank=False, related_name="projects")
-    scholar = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True)
+    scholar = models.ForeignKey(
+        to=User, on_delete=models.SET_NULL, null=True, related_name="projects")
     description = models.TextField(null=False, blank=False)
     cover_page = models.ImageField(
         upload_to=set_cover_upload, null=False, blank=False)

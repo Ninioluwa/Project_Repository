@@ -95,7 +95,8 @@
                     <h1 class="text-4xl font-bold leading-none lg:text-5xl xl:text-6xl"><a
                             href="{% url 'project-detail' id=latest.id %}">{{latest.title}}</a></h1>
                     <p class="pt-2 text-sm font-medium">by
-                        <a href="#" class="mr-1 underline">{{latest.scholar}}</a>
+                        <a href="{% url 'account-profile' id=latest.scholar.id %}"
+                            class="mr-1 underline">{{latest.scholar}}</a>
                         · <!--Authors name-->
                         <span class="mx-1">{{latest.date_uploaded}}</span> · <!--Date uploaded-->
                         <span class="mx-1 text-gray-600">
@@ -157,7 +158,8 @@
                     {{project.description}}
                 </p>
                 <p class="pt-2 text-xs font-medium">
-                    <a href="#_" class="mr-1 underline">{{project.scholar}}</a> · <!--Authors name-->
+                    <a href="{% url 'account-profile' id=project.scholar.id %}"
+                        class="mr-1 underline">{{project.scholar}}</a> · <!--Authors name-->
                     <span class="mx-1">{{project.date_uploaded}}</span> · <!--Date uploaded-->
                     <span class="mx-1">{{project.views}} Views</span> . <!--Project View Count-->
                     <span class="mx-1 text-gray-600">
