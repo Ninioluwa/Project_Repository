@@ -32,6 +32,14 @@ class ProjectForm(forms.ModelForm):
                 "class": "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             }
 
+        # Sort Fileds Alphabetically
+        self.fields["department"].queryset = self.fields["department"].queryset.order_by(
+            'name')
+        self.fields["institution"].queryset = self.fields["institution"].queryset.order_by(
+            'name')
+        self.fields["tags"].queryset = self.fields["tags"].queryset.order_by(
+            'name')
+
         self.fields["title"].widget.attrs["placeholder"] = "Hospital management system..."
         self.fields["year_published"].widget.attrs["placeholder"] = "2019"
         self.fields["supervisor"].widget.attrs["placeholder"] = "Albert Einstein"

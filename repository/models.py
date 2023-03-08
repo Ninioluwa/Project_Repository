@@ -93,8 +93,7 @@ class Project(models.Model):
         to=User, on_delete=models.SET_NULL, null=True, related_name="projects")
     description = models.TextField(null=False, blank=False)
     cover_page = models.ImageField(
-        upload_to=set_cover_upload, null=False, blank=False,
-        validators=[FileExtensionValidator(['png', 'jpeg', 'jpg'])])
+        upload_to=set_cover_upload, null=False, blank=False)
     document = models.FileField(upload_to=set_document_upload, validators=[
                                 FileExtensionValidator(['pdf'])])
     url = models.URLField(null=True)
