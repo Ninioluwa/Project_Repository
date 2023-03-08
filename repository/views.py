@@ -78,9 +78,10 @@ class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
     context_object_name = 'project'
 
     def get_object(self):
-        id = self.kwargs.get("id", None)
+        id = self.kwargs["id"]
+        project = get_object_or_404(Project, id=id)
+        if self.request.user != project.scholar:
+            project.views += 1
+            project.save()
 
-        if not id:
-            pass
-
-        return get_object_or_404(Project, id=id)
+        return project

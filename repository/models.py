@@ -5,6 +5,7 @@ from datetime import datetime
 from random import randint
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.core.validators import FileExtensionValidator
 from django.core.exceptions import ValidationError
 
 from account.models import Institution
@@ -92,8 +93,10 @@ class Project(models.Model):
         to=User, on_delete=models.SET_NULL, null=True, related_name="projects")
     description = models.TextField(null=False, blank=False)
     cover_page = models.ImageField(
-        upload_to=set_cover_upload, null=False, blank=False)
-    document = models.FileField(upload_to=set_document_upload)
+        upload_to=set_cover_upload, null=False, blank=False,
+        validators=[FileExtensionValidator(['png', 'jpeg', 'jpg'])])
+    document = models.FileField(upload_to=set_document_upload, validators=[
+                                FileExtensionValidator(['pdf'])])
     url = models.URLField(null=True)
     supervisor = models.CharField(max_length=50, null=False, blank=False)
     date_uploaded = models.DateTimeField(
