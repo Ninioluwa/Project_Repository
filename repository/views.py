@@ -3,7 +3,6 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse_lazy
-from django.core.paginator import Paginator
 
 from .forms import ProjectForm
 from .models import Project, Tag
