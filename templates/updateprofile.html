@@ -12,7 +12,7 @@
                 <div class="lg:w-full sm:w-3/4">
                     <h3 class="pt-4 text-2xl text-center">Update Your Profile, {{user.username}}!</h3>
 
-                    <form method="" action="" class="mt-8">
+                    
 
                         <div class="mx-auto flex justify-between lg:w-4/6 space-x-4 ">
 
@@ -27,47 +27,60 @@
                                     <hr class="mb-6 border-t" />
 
                                     <!-- First and Last Names -->
-                                    <div class="mb-4 lg:flex justify-between lg:space-x-5">
-                                        <div class="mb-4 lg:w-3/4">
-                                            <label class="block mb-2 text-sm font-bold text-gray-700" for="first_name">
-                                                First Name
-                                            </label>
-                                            {{form.first_name}}
+                                    <form method="" action="" class="mt-8">
+                                        <div class="mb-4 lg:flex justify-between lg:space-x-5">
+                                            <div class="mb-4 lg:w-3/4">
+                                                <label class="block mb-2 text-sm font-bold text-gray-700" for="first_name">
+                                                    First Name
+                                                </label>
+                                                {{form.first_name}}
+                                            </div>
+                                            <div class="mb-4 lg:w-3/4">
+                                                <label class="block mb-2 text-sm font-bold text-gray-700" for="last_name">
+                                                    Last Name
+                                                </label>
+                                                {{form.last_name}}
+                                            </div>
                                         </div>
-                                        <div class="mb-4 lg:w-3/4">
-                                            <label class="block mb-2 text-sm font-bold text-gray-700" for="last_name">
-                                                Last Name
-                                            </label>
-                                            {{form.last_name}}
+                                        <!--End First and Last Names -->
+
+                                        <!-- Email and Institution -->
+                                        <div class="mb-4 lg:flex justify-between lg:space-x-5">
+                                            <div class="mb-2 lg:w-3/4">
+
+                                                <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
+                                                    Email
+                                                </label>
+                                                {{form.email}}
+                                            </div>
+
+                                            <div class="w-80 mb-2 lg:w-3/4">
+                                                <!--Change to select field-->
+                                                <label class="block mb-2 text-sm font-bold text-gray-700" for="institution">
+                                                    Institution
+                                                </label>
+                                                {{form.institution}}
+                                            </div>
+                                           
+
                                         </div>
-                                    </div>
-                                    <!--End First and Last Names -->
 
-                                    <!-- Email and Institution -->
-                                    <div class="mb-4 lg:flex justify-between lg:space-x-5">
-                                        <div class="mb-4 lg:w-3/4">
-
-                                            <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
-                                                Email
-                                            </label>
-                                            {{form.email}}
+                                        <div class="mb-2 text-right">
+                                            <button
+                                                class="w-1/4 px-4 py-2 font-bold text-white bg-indigo-500 rounded-full focus:outline-none focus:shadow-outline"
+                                                type="submit">
+                                                Save Details
+                                            </button>
                                         </div>
-
-                                        <div class="w-80 mb-4 lg:w-3/4">
-                                            <!--Change to select field-->
-                                            <label class="block mb-2 text-sm font-bold text-gray-700" for="institution">
-                                                Institution
-                                            </label>
-                                            {{form.institution}}
-                                        </div>
-                                        <!--End Email and Institution -->
-
-                                    </div>
-
-                                    <!--Update Profile Picture-->
+                                        
+                                    </form>
+                                     <!--End Email and Institution -->
+                                    
+                                    <form method="" action="">
+                                             <!--Update Profile Picture-->
                                     <div>
                                         <div class="">
-                                            <p class="mt-4 text-xl">Update Profileeee Picture</p>
+                                            <p class="mt-4 text-xl">Update Profile Picture</p>
                                             <hr class="mb-6 border-t" />
                                             <div>
                                                 <label class="block mb-2 text-sm font-bold text-gray-700"
@@ -76,14 +89,28 @@
                                                         PNG </span>
                                                 </label>
                                                 <input
-                                                    class="block w-full text-sm text-gray-900 bg-indigo-100 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+                                                    class="block w-full mb-3 text-sm text-gray-900 bg-indigo-100 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
                                                     id="doc_img_upload" type="file" accept=".png, .jpg">
                                             </div>
                                         </div>
                                     </div>
-                                    <!--End Update Profile Picture-->
+                                   
 
-                                    <!--Change Password-->
+                                    <div class="mb-2 text-right">
+                                        <button
+                                            class="w-1/4 px-4 mt-2 py-2 font-bold text-white bg-indigo-500 rounded-full focus:outline-none focus:shadow-outline"
+                                            type="submit">
+                                            Save Picture
+                                        </button>
+                                    </div>
+                                    
+                                    </form>
+                                    
+                                     <!--End Update Profile Picture-->
+
+                                   <form action=" " method="">
+
+                                         <!--Change Password-->
                                     <div>
                                         <p class="mt-8 text-xl">Change Password</p>
                                         <hr class="mb-6 border-t" />
@@ -123,14 +150,19 @@
                                     </div>
                                     <!--End Change Password-->
 
-                                    <div class="mb-6 text-center">
+                                    <div class="mb-6 text-right">
                                         <button
-                                            class="w-full px-4 py-2 font-bold text-white bg-indigo-500 rounded-full focus:outline-none focus:shadow-outline"
+                                            class="w-1/4 px-4 py-2 font-bold text-white bg-indigo-500 rounded-full focus:outline-none focus:shadow-outline"
                                             type="submit">
-                                            Save Changes
+                                            Save Password
                                         </button>
                                     </div>
                                     <hr class="bottom-0 border-t" />
+                                   </form>
+
+                                   
+
+                                    
                                 </div>
                             </div>
                     </form>
