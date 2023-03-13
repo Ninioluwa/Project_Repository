@@ -12,72 +12,76 @@
                 <div class="lg:w-full sm:w-3/4">
                     <h3 class="pt-4 text-2xl text-center">Update Your Profile, {{user.username}}!</h3>
 
-                    
 
-                        <div class="mx-auto flex justify-between lg:w-4/6 space-x-4 ">
 
-                            <div>
-                                <img class="w-24 h-24 mt-6 rounded-full border" src="../static/img/home/avatar.png" />
-                            </div>
+                    <div class="mx-auto flex justify-between lg:w-4/6 space-x-4 ">
 
-                            <div>
-                                <div class="lg:ml-4">
+                        <div>
+                            <img class="w-24 h-24 mt-6 rounded-full border" src="{{user.profile_picture.url}}" />
+                        </div>
 
-                                    <p class="mt-8 text-xl">User Details</p>
-                                    <hr class="mb-6 border-t" />
+                        <div>
+                            <div class="lg:ml-4">
 
-                                    <!-- First and Last Names -->
-                                    <form method="" action="" class="mt-8">
-                                        <div class="mb-4 lg:flex justify-between lg:space-x-5">
-                                            <div class="mb-4 lg:w-3/4">
-                                                <label class="block mb-2 text-sm font-bold text-gray-700" for="first_name">
-                                                    First Name
-                                                </label>
-                                                {{form.first_name}}
-                                            </div>
-                                            <div class="mb-4 lg:w-3/4">
-                                                <label class="block mb-2 text-sm font-bold text-gray-700" for="last_name">
-                                                    Last Name
-                                                </label>
-                                                {{form.last_name}}
-                                            </div>
+                                <p class="mt-8 text-xl">User Details</p>
+                                <hr class="mb-6 border-t" />
+
+                                <!-- First and Last Names -->
+                                <form method="post" action="{% url 'edit-profile' %}" class="mt-8">
+                                    {% csrf_token %}
+                                    {{form.errors}}
+                                    {{password.errors}}
+                                    <div class="mb-4 lg:flex justify-between lg:space-x-5">
+                                        <div class="mb-4 lg:w-3/4">
+                                            <label class="block mb-2 text-sm font-bold text-gray-700" for="first_name">
+                                                First Name
+                                            </label>
+                                            {{form.first_name}}
                                         </div>
-                                        <!--End First and Last Names -->
+                                        <div class="mb-4 lg:w-3/4">
+                                            <label class="block mb-2 text-sm font-bold text-gray-700" for="last_name">
+                                                Last Name
+                                            </label>
+                                            {{form.last_name}}
+                                        </div>
+                                    </div>
+                                    <!--End First and Last Names -->
 
-                                        <!-- Email and Institution -->
-                                        <div class="mb-4 lg:flex justify-between lg:space-x-5">
-                                            <div class="mb-2 lg:w-3/4">
+                                    <!-- Email and Institution -->
+                                    <div class="mb-4 lg:flex justify-between lg:space-x-5">
+                                        <div class="mb-2 lg:w-3/4">
 
-                                                <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
-                                                    Email
-                                                </label>
-                                                {{form.email}}
-                                            </div>
-
-                                            <div class="w-80 mb-2 lg:w-3/4">
-                                                <!--Change to select field-->
-                                                <label class="block mb-2 text-sm font-bold text-gray-700" for="institution">
-                                                    Institution
-                                                </label>
-                                                {{form.institution}}
-                                            </div>
-                                           
-
+                                            <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
+                                                Email
+                                            </label>
+                                            {{form.email}}
                                         </div>
 
-                                        <div class="mb-2 text-right">
-                                            <button
-                                                class="w-1/4 px-4 py-2 font-bold text-white bg-indigo-500 rounded-full focus:outline-none focus:shadow-outline"
-                                                type="submit">
-                                                Save Details
-                                            </button>
+                                        <div class="w-80 mb-2 lg:w-3/4">
+                                            <!--Change to select field-->
+                                            <label class="block mb-2 text-sm font-bold text-gray-700" for="institution">
+                                                Institution
+                                            </label>
+                                            {{form.institution}}
                                         </div>
-                                        
-                                    </form>
-                                     <!--End Email and Institution -->
-                                    
-                                    <form method="" action="">
-                                             <!--Update Profile Picture-->
+
+
+                                    </div>
+
+                                    <div class="mb-2 text-right">
+                                        <button
+                                            class="w-1/4 px-4 py-2 font-bold text-white bg-indigo-500 rounded-full focus:outline-none focus:shadow-outline"
+                                            name="user_detail" type="submit">
+                                            Save Details
+                                        </button>
+                                    </div>
+
+                                </form>
+                                <!--End Email and Institution -->
+
+                                <form method="POST" action="{% url 'edit-profile' %}" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <!--Update Profile Picture-->
                                     <div>
                                         <div class="">
                                             <p class="mt-4 text-xl">Update Profile Picture</p>
@@ -88,51 +92,45 @@
                                                     <span class="help-block text-sm text-red-500">&nbsp; &nbsp; *JPG,
                                                         PNG </span>
                                                 </label>
-                                                <input
-                                                    class="block w-full mb-3 text-sm text-gray-900 bg-indigo-100 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
-                                                    id="doc_img_upload" type="file" accept=".png, .jpg">
+                                                {{profile.profile_picture}}
                                             </div>
                                         </div>
                                     </div>
-                                   
+
 
                                     <div class="mb-2 text-right">
                                         <button
                                             class="w-1/4 px-4 mt-2 py-2 font-bold text-white bg-indigo-500 rounded-full focus:outline-none focus:shadow-outline"
-                                            type="submit">
+                                            name="profile_pic_btn" type="submit">
                                             Save Picture
                                         </button>
                                     </div>
-                                    
-                                    </form>
-                                    
-                                     <!--End Update Profile Picture-->
 
-                                   <form action=" " method="">
+                                </form>
 
-                                         <!--Change Password-->
+                                <!--End Update Profile Picture-->
+
+                                <form method="post" action="{% url 'edit-profile' %}">
+                                    {% csrf_token %}
+                                    <!--Change Password-->
                                     <div>
                                         <p class="mt-8 text-xl">Change Password</p>
                                         <hr class="mb-6 border-t" />
                                         <div class="mb-4 lg:flex lg:justify-between">
                                             <div class="mb-4 lg:mr-2 lg:mb-4">
                                                 <label class="block mb-2 text-sm font-bold text-gray-700"
-                                                    for="password">
+                                                    for="old_password">
                                                     Current Password
                                                 </label>
-                                                <input
-                                                    class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                                    id="password" type="password" placeholder="******************" />
+                                                {{password.old_password}}
                                             </div>
 
                                             <div class="lg:ml-2">
                                                 <label class="block mb-2 text-sm font-bold text-gray-700"
-                                                    for="n_password">
+                                                    for="password">
                                                     New Password
                                                 </label>
-                                                <input
-                                                    class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                                    id="n_password" type="password" placeholder="******************" />
+                                                {{password.password}}
                                             </div>
 
                                             <div class="lg:ml-2">
@@ -140,9 +138,7 @@
                                                     for="c_password">
                                                     Confirm Password
                                                 </label>
-                                                <input
-                                                    class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                                    id="c_password" type="password" placeholder="******************" />
+                                                {{password.c_password}}
                                             </div>
 
                                         </div>
@@ -153,23 +149,23 @@
                                     <div class="mb-6 text-right">
                                         <button
                                             class="w-1/4 px-4 py-2 font-bold text-white bg-indigo-500 rounded-full focus:outline-none focus:shadow-outline"
-                                            type="submit">
+                                            name="change_password" type="submit">
                                             Save Password
                                         </button>
                                     </div>
                                     <hr class="bottom-0 border-t" />
-                                   </form>
+                                </form>
 
-                                   
 
-                                    
-                                </div>
+
+
                             </div>
-                    </form>
+                        </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 {% endblock content %}
