@@ -196,6 +196,14 @@ class ChangeProfilePictureForm(forms.ModelForm):
             "profile_picture"
         ]
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["profile_picture"].widget = forms.FileInput(attrs={
+            "class": "block w-full mb-3 text-sm text-gray-900 bg-indigo-100 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none",
+            "accept": ".png, .jpg",
+            "type": "file"
+        })
+
 
 class AccountLoginForm(forms.Form):
 
