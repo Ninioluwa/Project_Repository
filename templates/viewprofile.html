@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="mx-12 md:max-w-2xl md:mx-auto">
+    <div class="flex space-x-4 items-center mt-12 bg-indigo-300 px-4 py-2 rounded-lg">
+        {% if account.profile_picture %}
+        <div>
+            <img class="w-24 h-24 mt-6 rounded-full bord" src="{{account.profile_picture.url}}" />
+        </div>
+        {% endif %}
+
+        <div class="mt-8">
+            <p class="font-bold text-white text-xl">{{account.get_full_name}}
+                <span class="md:ml-56">
+                    {% if user == account %}
+                    <a href="{% url 'edit-profile'%}"
+                        class="text-sm text-indigo-500 rounded-lg p-1 bg-indigo-100 hover:bg-indigo-200">
+                        Edit Profile
+                    </a>
+                    {% endif %}
+                </span>
+            </p>
+            <p class="text-white mt-1">Babcock University</p>
+            <p class="text-white mt-2">
+                <span class="">Username:</span>
+                <span class="">{{account.username}}</span>
+                <br>
+                <span class="">Email:</span>
+                <span class="">{{account.email}}</span>
+            </p>
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+    <!--Project Listing-->
+    <p class="font-bold text-xl mb-2 mt-8">Projects Uploaded</p>
+    <hr class="mb-6 mt-2">
+    <div class="max-w-7xl mx-auto mb-52">
+
+
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg mb-2">
+
+            <div class="p-4">
+                <label for="table-search" class="sr-only">Search</label>
+                <div class="relative mt-1">
+                    <form>
+                        <!--Search Bar-->
+                        <button type="submit" class="absolute inset-y-0 left-0 flex items-center pl-3">
+                            <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
+                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                        <input type="text" id="table-search"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/2 pl-10 p-2.5"
+                            placeholder="Search for your projects">
+                    </form>
+
+                </div>
+            </div>
+
+            <!--Projects-->
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Project Title
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Plagiarism SCore
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Views
+                        </th>
+                        {% if user == account %}
+                        <th scope="col" class="px-6 py-3">
+                            Edit
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Delete
+                        </th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for project in account.projects.all %}
+                    <tr class="bg-white border-b">
+
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 text-wrap">
+                            <!--Project title, to link to project detail page-->
+                            <a href="{% url 'project-detail' id=project.id %}">{{project.title}}</a>
+                        </th>
+                        <td class="px-6 py-4">
+                            <!--Plagiarism Score-->
+                            {{project.plagiarism_score}}%
+                        </td>
+                        <td class="px-6 py-4 ">
+                            <!--Number of views-->
+                            {{project.views}}
+                        </td>
+                        {% if user == account %}
+                        <td class="px-6 py-4">
+                            <a href="#" class="font-medium text-blue-600">Edit</a>
+                        </td>
+                        <td class="px-6 py-4 text-red-600">
+                            <!--Delete Project-->
+                            Delete
+                        </td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+
+
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</section>
+{% endblock content %}

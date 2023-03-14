@@ -1,3 +1,90 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404
+from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.decorators.csrf import csrf_exempt
+from django.urls import reverse_lazy
 
-# Create your views here.
+from .forms import ProjectForm
+from .models import Project, Tag
+
+
+class CreateProjectView(LoginRequiredMixin, generic.CreateView):
+
+    form_class = ProjectForm
+    template_name = 'createproject.html'
+
+    def get_success_url(self) -> str:
+        id = Project.objects.filter(
+            scholar=self.request.user).order_by("date_uploaded").last().id
+        return reverse_lazy("project-detail", kwargs={"id": id})
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["request"] = self.request
+
+        return kwargs
+
+
+class DisplayProjectView(LoginRequiredMixin, generic.ListView):
+
+    context_object_name = "projects"
+    template_name = "displayprojects.html"
+    paginate_by = 9
+
+    def get_queryset(self):
+        filter = self.request.GET.get("filter", None)
+        if not filter:
+            return Project.objects.all()
+
+        search = self.request.GET.get("search", None)
+        allowed_filters = [
+            "year",
+            "title",
+            "supervisor",
+            "department"
+        ]
+
+        if filter not in allowed_filters:
+
+            return Project.objects.all()
+
+        if filter == "year":
+            query = Project.objects.filter(year_published=search)
+
+        elif filter == "title":
+            query = Project.objects.filter(title__icontains=search)
+
+        elif filter == "department":
+            query = Project.objects.filter(department__name__icontains=search)
+
+        elif filter == "supervisor":
+            query = Project.objects.filter(
+                supervisor__icontains=search)
+
+        return query
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["latest"] = Project.objects.all().order_by(
+            'date_uploaded').last()
+
+        return context
+
+    @csrf_exempt
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+
+class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
+
+    template_name = 'projectdetail.html'
+    context_object_name = 'project'
+
+    def get_object(self):
+        id = self.kwargs["id"]
+        project = get_object_or_404(Project, id=id)
+        if self.request.user != project.scholar:
+            project.views += 1
+            project.save()
+
+        return project
