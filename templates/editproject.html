@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="mx-auto max-w-7xl mt-14 mb-48">
+    <span class="mx-4 text-3xl font-bold antialiased text-indigo-500">Edit Project</span>
+    <form enctype="multipart/form-data" method="post" class="mx-4 mt-12">
+        {% csrf_token %}
+        <div class="flex justify-center items-center grid gap-6 mb-6 md:grid-cols-2">
+            <div>
+                <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project
+                    Title</label>
+                {{form.title}}
+            </div>
+            <div>
+                <label for="year_published" class="block mb-2 text-sm font-medium text-gray-900 ">Year Publsihed</label>
+                {{form.year_published}}
+            </div>
+
+            <div>
+                <label for="department" class="block mb-2 text-sm font-medium text-gray-900 ">Department</label>
+                {{form.department}}
+
+            </div>
+            <div>
+                <label for="institution" class="block mb-2 text-sm font-medium text-gray-900 ">Institution</label>
+                {{form.institution}}
+
+            </div>
+
+            <div>
+                <label for="supervisor" class="block mb-2 text-sm font-medium text-gray-900 ">Project Supervisor</label>
+                {{form.supervisor}}
+            </div>
+
+
+            <div>
+                <label for="url" class="block mb-2 text-sm font-medium text-gray-900 ">Link to Resources</label>
+                {{form.url}}
+            </div>
+
+
+
+            <div>
+                <label for="tags" class="block mb-2 text-sm font-medium text-gray-900 ">Tag(s) <span
+                        class="help-block text-sm text-gray-500">&nbsp; &nbsp; Hold down the Ctrl (windows) / Command
+                        (Mac) button to select multiple options.</span></label>
+                {{form.tags}}
+
+            </div>
+
+            <div>
+                <label for="description"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                {{form.description}}
+            </div>
+
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload
+                    Document
+                    <span class="help-block text-sm text-red-500">&nbsp; &nbsp; *PDF </span>
+                </label>
+                {{form.document}}
+            </div>
+
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Cover Image
+                    <span class="help-block text-sm text-red-500">&nbsp; &nbsp; *JPG, PNG </span>
+                </label>
+                {{form.cover_page}}
+            </div>
+
+
+
+
+        </div>
+        <div>
+
+            <button type="submit"
+                class="text-gray-100 bg-indigo-600 hover:bg-indigo-500 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+        </div>
+
+
+    </form>
+
+</section>
+
+{% endblock content %}
