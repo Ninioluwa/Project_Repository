@@ -119,12 +119,14 @@
 <script>
         function cancelFunction(){
             var card = document.getElementById("error_card");
-           
+            var delete_card = document.getElementById("delete_project");
             card.style.display = "none";
-            
+            delete_card.style.display ="none";
         }
 </script>
 <!--End Alert for Error-->
+
+
 
     {% block content %}
     {% endblock content %}
