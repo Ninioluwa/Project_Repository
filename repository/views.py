@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse_lazy
 
-from .forms import ProjectForm
+from .forms import ProjectForm, UpdateProjectForm
 from .models import Project, Tag
 
 
@@ -88,3 +88,22 @@ class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
             project.save()
 
         return project
+
+
+class UpdateProjectView(LoginRequiredMixin, generic.UpdateView):
+
+    template_name = 'editproject.html'
+    form_class = UpdateProjectForm
+
+    def get_queryset(self):
+        return Project.objects.filter(scholar=self.request.user)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["request"] = self.request
+        kwargs["instance"] = self.get_queryset().get(id=self.kwargs["pk"])
+
+        return kwargs
+
+    def get_success_url(self) -> str:
+        return reverse_lazy('project-detail', kwargs={"id": self.kwargs["pk"]})
