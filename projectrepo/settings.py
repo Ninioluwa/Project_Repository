@@ -16,8 +16,8 @@ DEBUG = (os.getenv("DEBUG") == "true")
 
 ALLOWED_HOSTS = [
     'burepo.onrender.com',
-    'localhost:8000',
-    '127.0.0.1:8000'
+    'localhost',
+    '127.0.0.1'
 ]
 
 
@@ -127,4 +127,5 @@ LOGIN_URL = '/account/login/'
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATIC_ROOT = BASE_DIR/"static_root"
 DEFAULT_FILE_STORAGE = 'projectrepo.storage.OverWriteStorage'
