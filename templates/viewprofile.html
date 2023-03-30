@@ -13,16 +13,18 @@
             Are you sure you want to delete the project? All it's details will be cleared permanently!
         </div>
         <div class="ml-auto space-x-5">
-            <button onclick=""
-                class="ml-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex h-8 w-8">
-                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"></path>
-                </svg>
+            <a id="deletelink" href="">
+                <button type="submit"
+                    class="ml-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex h-8 w-8">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clip-rule="evenodd"></path>
+                    </svg>
 
-            </button>
+                </button>
+            </a>
 
             <button onclick="cancelFunction()"
                 class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8">
@@ -40,8 +42,10 @@
 </div>
 
 <script>
-    function deleteFunction() {
+    function deleteFunction(project_url) {
         var card = document.getElementById("delete_project");
+        var link = document.getElementById("deletelink");
+        link.setAttribute("href", project_url)
         if (card.style.display === "none") {
             card.style.display = "block";
         }
@@ -162,7 +166,7 @@
                         </td>
                         <td class="px-6 py-4 text-red-600">
                             <!--Delete Project-->
-                            <button onclick="deleteFunction()">
+                            <button onclick=deleteFunction("{% url 'delete-project' id=project.id %}")>
                                 Delete
                             </button>
                         </td>

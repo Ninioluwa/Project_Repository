@@ -1,3 +1,5 @@
+import requests
+
 from django import forms
 from .models import Project, Tag
 
@@ -55,8 +57,19 @@ class ProjectForm(forms.ModelForm):
         post = Project(**self.cleaned_data, scholar=self.request.user)
 
         # !!! REMOVE THIS BLOCK LATER
-        post.plagiarism_score = 0
-        # !!! REMOVE THIS BLOCK LATER
+
+    #     requests.post("https://api.unicheck.com/oauth/access-token",
+    #                   headers={
+    #                       "Content-Type": "application/x-www-form-urlencoded"},
+    #                   data={
+    #                       "grant_type": "client_credentials",
+    #                       ""
+    #                   }
+    #                   )
+
+    # -d 'grant_type=<grant_type>&client_id=<client_id>&client_secret=<secret>'
+    #  post.plagiarism_score = 0
+    #   # !!! REMOVE THIS BLOCK LATER
 
         post.save()
 

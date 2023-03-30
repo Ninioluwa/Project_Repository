@@ -11,7 +11,7 @@ env = Env(
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env.read_env(Path.joinpath(BASE_DIR, "projectrepo", ".env"))
+env.read_env(Path.joinpath(BASE_DIR, ".env"))
 
 
 SECRET_KEY = env("secret_key")

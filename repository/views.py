@@ -1,6 +1,9 @@
 from django.shortcuts import get_object_or_404
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse_lazy
 
@@ -88,6 +91,22 @@ class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
             project.save()
 
         return project
+
+
+@login_required
+def deleteview(request, *args, **kwargs):
+    if request.method != "GET":
+        return HttpResponse("Invalid", status=405)
+
+    id = kwargs["id"]
+    project = get_object_or_404(Project, id=id)
+
+    if project.scholar != request.user:
+        return HttpResponse("Invalid", status=405)
+
+    project.delete()
+
+    return redirect(reverse_lazy("account-profile", kwargs={"id": request.user.id}))
 
 
 class UpdateProjectView(LoginRequiredMixin, generic.UpdateView):
