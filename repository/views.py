@@ -28,7 +28,7 @@ class CreateProjectView(LoginRequiredMixin, generic.CreateView):
         return kwargs
 
 
-class DisplayProjectView(LoginRequiredMixin, generic.ListView):
+class DisplayProjectView(generic.ListView):
 
     context_object_name = "projects"
     template_name = "displayprojects.html"

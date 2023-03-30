@@ -1,24 +1,24 @@
 import os
 from pathlib import Path
-from environ.environ import Env
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-
-env = Env(
-    DEBUG=(bool, True)
-)
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env.read_env(Path.joinpath(BASE_DIR, ".env"))
+load_dotenv(BASE_DIR/".env")
 
 
-SECRET_KEY = env("secret_key")
+SECRET_KEY = os.getenv("SECRET_KEY")
 
-DEBUG = env("DEBUG")
+DEBUG = (os.getenv("DEBUG") == "true")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'burepo.onrender.com',
+    'localhost:8000',
+    '127.0.0.1:8000'
+]
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -125,4 +126,5 @@ AUTH_USER_MODEL = "account.Account"
 LOGIN_URL = '/account/login/'
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 DEFAULT_FILE_STORAGE = 'projectrepo.storage.OverWriteStorage'

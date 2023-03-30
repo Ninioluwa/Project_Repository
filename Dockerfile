@@ -11,4 +11,4 @@ RUN pip install --upgrade pip
 
 RUN pip install -r requirements.txt
 
-CMD ["gunicorn", "projectrepo.wsgi"]
+CMD ["gunicorn", "projectrepo.wsgi", "--bind", "0.0.0.0"]
