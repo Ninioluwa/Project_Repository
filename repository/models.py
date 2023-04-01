@@ -14,7 +14,6 @@ User = get_user_model()
 
 
 def set_folder_name(model):
-    title = model.id
     folder = os.path.join("repo", model.project_id)
 
     return folder
@@ -80,7 +79,7 @@ class Project(models.Model):
     def set_id():
         return randint(int("1"*15), int("9"*15))
 
-    id = models.IntegerField(primary_key=True, default=set_id)
+    id = models.BigIntegerField(primary_key=True, default=set_id)
     project_id = models.CharField(
         max_length=115, null=False, blank=False, unique=True)
     title = models.CharField(

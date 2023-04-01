@@ -29,7 +29,6 @@
                                 <!-- First and Last Names -->
                                 <form method="post" action="{% url 'edit-profile' %}" class="mt-8">
                                     {% csrf_token %}
-                                    {{form.errors}}
                                     {{password.errors}}
                                     <div class="mb-4 lg:flex justify-between lg:space-x-5">
                                         <div class="mb-4 lg:w-3/4">

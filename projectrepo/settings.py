@@ -24,7 +24,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic',
+    # 'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -33,7 +33,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tailwind',
     'repository',
-    'account'
+    'account',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -73,12 +74,14 @@ WSGI_APPLICATION = 'projectrepo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv("DB_NAME"),
+        'USER': os.getenv("DB_USER"),
+        'PASSWORD': os.getenv("DB_PASSWORD"),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': int(os.getenv('DB_PORT'))
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -116,24 +119,38 @@ AUTHENTICATION_BACKENDS = [
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR/"static"]
-MEDIA_ROOT = os.path.join(BASE_DIR, "static", "media")
-MEDIA_URL = "/media/"
-
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "account.Account"
 LOGIN_URL = '/account/login/'
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
-STORAGES = {
 
+
+STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
 
+if not DEBUG:
+    DEFAULT_FILE_STORAGE = "projectrepo.storage.MediaStorage"
 
+    AWS_S3_ACCESS_KEY_ID = os.getenv("AWS_S3_ACCESS_KEY_ID")
+    AWS_S3_SECRET_ACCESS_KEY = os.getenv("AWS_S3_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+    # AWS_DEFAULT_ACL = None
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    # AWS_QUERYSTRING_AUTH = False
+    MEDIA_LOCATION = "media"
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/'
+
+else:
+    DEFAULT_FILE_STORAGE = "projectrepo.storage.OverWriteStorage"
+    MEDIA_ROOT = os.path.join(BASE_DIR, "static", "media")
+    MEDIA_URL = "/media/"
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR/"static"]
 STATIC_ROOT = BASE_DIR/"static_root"
-DEFAULT_FILE_STORAGE = 'projectrepo.storage.OverWriteStorage'
