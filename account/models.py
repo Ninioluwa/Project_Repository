@@ -28,7 +28,7 @@ class Account(AbstractUser):
 
     id = models.UUIDField(primary_key=True, default=uuid4)
     profile_picture = models.ImageField(
-        upload_to=set_name, null=False, blank=False, default=os.path.join("profile-picture", "avatar.png"))
+        upload_to=set_name, null=True, blank=True)
     last_name = models.CharField(max_length=50, null=False, blank=False)
     first_name = models.CharField(max_length=50, blank=False, null=False)
     email = models.EmailField(unique=True, null=False, blank=False)
