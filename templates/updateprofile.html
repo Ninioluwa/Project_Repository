@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 <!--Form-->
 <section class="flex justify-center mb-32">
@@ -17,7 +17,11 @@
                     <div class="mx-auto flex justify-between lg:w-4/6 space-x-4 ">
 
                         <div>
-                            <img class="w-24 h-24 mt-6 rounded-full border" src="{{user.profile_picture.url}}" />
+                            {% if user.profile_picture %}
+                            <img class="w-24 h-24 mt-6 rounded-full border" src="{{user.profile_picture.url}}">
+                            {% else %}
+                            <img class="w-24 h-24 mt-6 rounded-full border" src="{% static 'img/avatar.png' %}">
+                            {% endif %}
                         </div>
 
                         <div>

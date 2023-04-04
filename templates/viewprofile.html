@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
 <!--Alert to Delete Project-->
@@ -56,11 +57,14 @@
 <section class="mx-12 md:max-w-2xl md:mx-auto">
 
     <div class="flex space-x-4 items-center mt-12 bg-indigo-300 px-4 py-2 rounded-lg">
-        {% if account.profile_picture %}
         <div>
-            <img class="w-24 h-24 mt-6 rounded-full bord" src="{{account.profile_picture.url}}" />
+            {% if account.profile_picture %}
+            <img class="w-24 h-24 mt-6 rounded-full border" src="{{account.profile_picture.url}}" />
+            {% else %}
+
+            <img class="w-24 h-24 mt-6 rounded-full border" src="{% static 'img/avatar.png' %}" />
+            {% endif %}
         </div>
-        {% endif %}
 
         <div class="mt-8">
             <p class="font-bold text-white text-xl">{{account.get_full_name}}
