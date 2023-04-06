@@ -134,7 +134,7 @@ STORAGES = {
     },
 }
 
-if not DEBUG:
+if not DEBUG and "test" not in sys.argv:
     DEFAULT_FILE_STORAGE = "projectrepo.storage.MediaStorage"
 
     AWS_S3_ACCESS_KEY_ID = os.getenv("AWS_S3_ACCESS_KEY_ID")
