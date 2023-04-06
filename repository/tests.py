@@ -1,3 +1,6 @@
+import os
+import shutil
+
 from django.test import TestCase
 from django.urls import reverse_lazy
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -40,10 +43,6 @@ class TestProjectRepository(TestCase):
         coverpage = open("/home/toluhunter/Pictures/lamp.jpeg", "rb")
         document = open(
             "/home/toluhunter/Downloads/Open Source Documentation Group 7.pdf", "rb")
-        files = {
-            "cover_page": coverpage,
-            "document": document
-        }
 
         institution = Institution.objects.create(name="University of XYZ")
         department = Department.objects.create(name="Software Engineering")
@@ -70,6 +69,7 @@ class TestProjectRepository(TestCase):
         self.assertEquals(302, res.status_code)
 
         project = Project.objects.last()
+        self.project = project
 
         self.assertIsNotNone(project.id)
         self.assertEqual(project.title, "Test Project")
@@ -83,3 +83,6 @@ class TestProjectRepository(TestCase):
         self.assertEqual(project.supervisor, "John Doe")
         self.assertEqual(project.year_published, "2022")
         self.assertEqual(str(project), "Test Project")
+
+        path = os.path.dirname(project.document.path)
+        shutil.rmtree(path)
