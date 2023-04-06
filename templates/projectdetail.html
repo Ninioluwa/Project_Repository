@@ -67,7 +67,8 @@
                     <h1 class="text-4xl font-bold leading-none lg:text-5xl xl:text-6xl"><a
                             href="#_">{{project.title}}</a></h1>
                     <p class="pt-2 text-sm font-medium">by
-                        <a href="#_" class="mr-1 underline">Author {{project.scholar.first_name}}</a> ·
+                        <a href="{% url 'account-profile' id=project.scholar.id %}"
+                            class="mr-1 underline">{{project.scholar}}</a> ·
                         <!--Authors name-->
                         <span class="mx-1">{{project.date_uploaded}}</span> · <!--Date uploaded-->
                         <span class="mx-1 text-gray-600">

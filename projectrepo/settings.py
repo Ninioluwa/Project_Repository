@@ -1,4 +1,5 @@
 import os
+import sys
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -150,6 +151,15 @@ else:
     DEFAULT_FILE_STORAGE = "projectrepo.storage.OverWriteStorage"
     MEDIA_ROOT = os.path.join(BASE_DIR, "static", "media")
     MEDIA_URL = "/media/"
+
+
+if "test" in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'memory'
+        }
+    }
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR/"static"]

@@ -81,7 +81,6 @@ class UpdateProfileView(LoginRequiredMixin, generic.FormView):
 
     def post(self, request):
         form = None
-        print(request.POST)
         if "user_detail" in request.POST:
             form = self.get_form()
 

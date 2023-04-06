@@ -242,6 +242,5 @@ class AccountLoginForm(forms.Form):
             raise forms.ValidationError("Invalid Credentials")
 
         login(request=self.request, user=user)
-        print(user.backend)
 
         return super().clean()

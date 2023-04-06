@@ -68,7 +68,7 @@ class ProjectForm(forms.ModelForm):
     #                   )
 
     # -d 'grant_type=<grant_type>&client_id=<client_id>&client_secret=<secret>'
-    #  post.plagiarism_score = 0
+        post.plagiarism_score = 0
     #   # !!! REMOVE THIS BLOCK LATER
 
         post.save()

@@ -38,7 +38,7 @@ def set_document_upload(model, filename):
     else:
         extension = ""
 
-    return os.path.join(folder, f"project.{extension}")
+    return os.path.join(folder, f"{model.title}.{extension}")
 
 
 def year_validator(value):
