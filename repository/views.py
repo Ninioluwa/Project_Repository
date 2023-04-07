@@ -15,8 +15,10 @@ class CreateProjectView(LoginRequiredMixin, generic.CreateView):
 
     form_class = ProjectForm
     template_name = 'createproject.html'
+    object = None
 
     def get_success_url(self) -> str:
+
         id = Project.objects.filter(
             scholar=self.request.user).order_by("date_uploaded").last().id
         return reverse_lazy("project-detail", kwargs={"id": id})

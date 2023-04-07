@@ -49,27 +49,15 @@ class ProjectForm(forms.ModelForm):
         self.fields["description"].widget.attrs["placeholder"] = "This is a system designed to model other systems..."
 
     def clean(self):
+
+        self.cleaned_data["plagiarism_score"] = 0
+
         return self.cleaned_data
 
     def save(self):
 
         tags = self.cleaned_data.pop("tags")
         post = Project(**self.cleaned_data, scholar=self.request.user)
-
-        # !!! REMOVE THIS BLOCK LATER
-
-    #     requests.post("https://api.unicheck.com/oauth/access-token",
-    #                   headers={
-    #                       "Content-Type": "application/x-www-form-urlencoded"},
-    #                   data={
-    #                       "grant_type": "client_credentials",
-    #                       ""
-    #                   }
-    #                   )
-
-    # -d 'grant_type=<grant_type>&client_id=<client_id>&client_secret=<secret>'
-        post.plagiarism_score = 0
-    #   # !!! REMOVE THIS BLOCK LATER
 
         post.save()
 
@@ -99,6 +87,12 @@ class UpdateProjectForm(forms.ModelForm):
     def __init__(self, request, *args, **kwargs):
         self.request = request
         super().__init__(*args, **kwargs)
+
+        self.initial.pop("document")
+        self.initial.pop("cover_page")
+        for key in self.fields.keys():
+            self.fields[key].required = False
+
         choices = self.fields["tags"].widget.choices
 
         self.fields["tags"].widget = forms.CheckboxSelectMultiple(
@@ -124,4 +118,10 @@ class UpdateProjectForm(forms.ModelForm):
         self.fields["description"].widget.attrs["placeholder"] = "This is a system designed to model other systems..."
 
     def clean(self):
+        if self.instance and not self.cleaned_data["document"]:
+            print("Updated detail")
+
+        else:
+            print("Document Changed")
+
         return self.cleaned_data
