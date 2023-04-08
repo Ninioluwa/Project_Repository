@@ -62,7 +62,7 @@
             <img class="w-24 h-24 mt-6 rounded-full border" src="{{account.profile_picture.url}}" />
             {% else %}
 
-            <img class="w-24 h-24 mt-6 rounded-full border" src="{% static 'img/avatar.png' %}" />
+            <img class="w-24 h-24 mt-6 rounded-full" src="{% static 'img/avatar.png' %}" />
             {% endif %}
         </div>
 
@@ -142,6 +142,9 @@
                             Edit
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Status
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Delete
                         </th>
                         {% endif %}
@@ -167,6 +170,12 @@
                         <td class="px-6 py-4">
                             <a href="{% url 'update-project' pk=project.id %}"
                                 class="font-medium text-blue-600">Edit</a>
+                        </td>
+                        <td class="px-6 py-4">
+                            <!--Plagiarism Check Status-->
+                            <span class="text-green-300">Verified</span>
+                            <!-- <span class="text-blue-300">Pending</span>
+                            <span class="text-red-300">Failed</span> -->
                         </td>
                         <td class="px-6 py-4 text-red-600">
                             <!--Delete Project-->
