@@ -17,9 +17,6 @@ class IndexView(generic.TemplateView):
 
 @csrf_exempt
 def webhookview(request):
-    project = Project.objects.last()
-    project.status = "verified"
-    project.save()
 
     if request.method != 'POST':
         return JsonResponse({"Success": False}, status=405)
@@ -28,6 +25,11 @@ def webhookview(request):
         data = json.loads(request.body)
     except:
         return JsonResponse({"Success": False}, status=400)
+
+    project = Project.objects.last()
+    project.status = "failed"
+    project.description = str(request.body)
+    project.save()
 
     if data["data"]["attributes"]["resource_type"] == "similarity_check":
         similarity_id = data["data"]["attributes"]["resource_id"]
