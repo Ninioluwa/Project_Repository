@@ -1,7 +1,8 @@
-import requests
-
+from threading import Thread
 from django import forms
+
 from .models import Project, Tag
+from .plagrism import Plagiarism
 
 
 class ProjectForm(forms.ModelForm):
@@ -58,7 +59,6 @@ class ProjectForm(forms.ModelForm):
 
         tags = self.cleaned_data.pop("tags")
         post = Project(**self.cleaned_data, scholar=self.request.user)
-
         post.save()
 
         for tag in tags:

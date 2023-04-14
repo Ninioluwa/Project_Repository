@@ -164,3 +164,5 @@ if "test" in sys.argv:
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR/"static"]
 STATIC_ROOT = BASE_DIR/"static_root"
+UNICHECK_CLIENT_ID = os.getenv("UNICHECK_CLIENT_ID")
+UNICHECK_CLIENT_SECRET = os.getenv("UNICHECK_CLIENT_SECRET")

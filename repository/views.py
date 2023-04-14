@@ -38,8 +38,9 @@ class DisplayProjectView(generic.ListView):
 
     def get_queryset(self):
         filter = self.request.GET.get("filter", None)
+        queryset = Project.objects.filter(status="verified")
         if not filter:
-            return Project.objects.all().order_by('date_uploaded')
+            return queryset.order_by('date_uploaded')
 
         search = self.request.GET.get("search", None)
         allowed_filters = [
@@ -51,19 +52,19 @@ class DisplayProjectView(generic.ListView):
 
         if filter not in allowed_filters:
 
-            return Project.objects.all().order_by('date_uploaded')
+            return queryset.order_by('date_uploaded')
 
         if filter == "year":
-            query = Project.objects.filter(year_published=search)
+            query = queryset.filter(year_published=search)
 
         elif filter == "title":
-            query = Project.objects.filter(title__icontains=search)
+            query = queryset.filter(title__icontains=search)
 
         elif filter == "department":
-            query = Project.objects.filter(department__name__icontains=search)
+            query = queryset.filter(department__name__icontains=search)
 
         elif filter == "supervisor":
-            query = Project.objects.filter(
+            query = queryset.filter(
                 supervisor__icontains=search)
 
         return query.order_by('date_uploaded')

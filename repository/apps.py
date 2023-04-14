@@ -6,5 +6,6 @@ class RepositoryConfig(AppConfig):
     name = 'repository'
 
     def ready(self):
-        from .signals import delete_project
+        from .signals import delete_project, run_plagiarism_check
         delete_project
+        run_plagiarism_check
