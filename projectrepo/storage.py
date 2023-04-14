@@ -10,7 +10,6 @@ class MediaStorage(S3Boto3Storage):
     location = 'media'
     default_acl = 'private'
     file_overwrite = True
-    custom_domain = False
 
 
 class OverWriteStorage(FileSystemStorage):
