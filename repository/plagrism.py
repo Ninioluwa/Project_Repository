@@ -28,6 +28,21 @@ class Plagiarism:
             "Accept": "application/vnd.api+json"
         }
 
+    def re_authenticate(self):
+        data = {
+            "grant_type": "client_credentials",
+            "client_id": settings.UNICHECK_CLIENT_ID,
+            "client_secret": settings.UNICHECK_CLIENT_SECRET
+        }
+
+        user_details = requests.post(
+            f"{self.base_url}/oauth/access-token", data=data).json()
+
+        self.headers = {
+            "Authorization": "Bearer " + user_details["access_token"],
+            "Accept": "application/vnd.api+json"
+        }
+
     def upload_file(self, instance):
         # Set up headers and URL for the API request
         url = f"{self.base_url}/files"

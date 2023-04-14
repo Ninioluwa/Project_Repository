@@ -28,7 +28,7 @@ def webhookview(request):
 
     project = Project.objects.last()
     project.status = "failed"
-    project.description = str(request.body)
+    project.description = request.body.decode()
     project.save()
 
     if data["data"]["attributes"]["resource_type"] == "similarity_check":
