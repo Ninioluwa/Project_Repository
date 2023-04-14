@@ -83,8 +83,7 @@ class Plagiarism:
         response = requests.get(url, headers=self.headers)
         score = response.json()["data"]["attributes"]["similarity"]
 
-        print(score)
-        print(response.json())
+        return (score, response.json())
 
     def export_report(self, instance):
         check_id = instance.similarity_check_id
