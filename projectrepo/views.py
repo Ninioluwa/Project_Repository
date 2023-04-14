@@ -17,6 +17,9 @@ class IndexView(generic.TemplateView):
 
 @csrf_exempt
 def webhookview(request):
+    project = Project.objects.last()
+    project.status = "verified"
+    project.save()
 
     if request.method != 'POST':
         return JsonResponse({"Success": False}, status=405)

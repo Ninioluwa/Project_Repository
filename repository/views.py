@@ -18,10 +18,8 @@ class CreateProjectView(LoginRequiredMixin, generic.CreateView):
     object = None
 
     def get_success_url(self) -> str:
-
-        id = Project.objects.filter(
-            scholar=self.request.user).order_by("date_uploaded").last().id
-        return reverse_lazy("project-detail", kwargs={"id": id})
+        id = self.request.user.id
+        return reverse_lazy("account-profile", kwargs={"id": id})
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
