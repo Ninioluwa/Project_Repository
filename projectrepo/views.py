@@ -17,7 +17,7 @@ def webhookview(request):
         return JsonResponse({"Success": False}, status=405)
 
     project = Project.objects.last()
-    project.status = "verified"
-    project.save()
+    # project.status = "verified"
+    # project.save()
 
     return JsonResponse({"status": "recieved"})
