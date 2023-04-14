@@ -91,6 +91,17 @@ class Project(models.Model):
     scholar = models.ForeignKey(
         to=User, on_delete=models.SET_NULL, null=True, related_name="projects")
     description = models.TextField(null=False, blank=False)
+    status = models.CharField(
+        choices=[
+            ("pending", "Pending"),
+            ("failed", "Failed"),
+            ("verified", "Verified")
+        ],
+        default="pending",
+        max_length=8,
+        blank=False,
+        null=False
+    )
     cover_page = models.ImageField(
         upload_to=set_cover_upload, null=False, blank=False)
     document = models.FileField(upload_to=set_document_upload, validators=[
