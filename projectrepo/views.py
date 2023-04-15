@@ -47,7 +47,8 @@ def webhookview(request):
         except Project.DoesNotExist:
             return JsonResponse({"Success": False}, status=400)
 
-        score, _ = plagiarism.fetch_plagiarism_details(project)
+        score, res = plagiarism.fetch_plagiarism_details(project)
+        send_mail(subject='final check', message=json.dumps(res), from_email=settings.EMAIL_HOST_USER, recipient_list=["toluhunter19@gmail.com"])
 
         if score >= 25:
             project.status = "failed"

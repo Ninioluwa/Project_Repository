@@ -63,6 +63,12 @@ class Plagiarism:
                         "web": True,
                         "library": False
                     },
+                    "parameters": {
+                        "exclude": {
+                            "citations": False,
+                            "references": False
+                        }
+                    }
                 }
             },
             "relationships": {
