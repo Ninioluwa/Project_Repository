@@ -29,6 +29,17 @@ def webhookview(request):
         return JsonResponse({"Success": False}, status=400)
 
     plagiarism = Plagiarism()
+    if data["data"]["attributes"]["resource_type"] == "file" and data["data"]["attributes"]["event_type"] == "file_processed":
+        file_id = data["data"]["attributes"]["resource_id"]
+        try:
+            project = Project.objects.get(file_id=file_id)
+        except Project.DoesNotExist:
+            return JsonResponse({"Success": False}, status=400)
+
+        plagiarism.start_plagiarism_check(project)
+        project.save()
+        return JsonResponse({"status": "recieved"})
+
     if data["data"]["attributes"]["resource_type"] == "similarity_check" and data["data"]["attributes"]["event_type"] == "similarity_check_finished":
         similarity_id = data["data"]["attributes"]["resource_id"]
         try:

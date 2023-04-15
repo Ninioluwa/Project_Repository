@@ -63,12 +63,6 @@ class Plagiarism:
                         "web": True,
                         "library": False
                     },
-                    "parameters": {
-                        "sensitivity": {
-                            "percentage": 0,
-                            "words_count": 8
-                        }
-                    }
                 }
             },
             "relationships": {
