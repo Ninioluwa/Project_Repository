@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="md:max-w-7xl mx-auto flex justify-center items-center space-x-80">
+    <div class="">
+        <h1 class="font-bold text-4xl my-20 md:mb-4">Plagiarism Report</h1>
+        <!-- <p class="font-bold text-xl mx-auto">Health Management System.pdf</p> -->
+        <div class="">
+            <!--File Name-->
+            <p class="font-bold text-lg mb-2">Hospital Management System.pdf </p>
+
+            <!--Feedback Message-->
+            <p class=""><span class="text-red-600 font-bold"> Unfortuately</span>, your work seems to be highly plagiarized. Hence it can't be uploaded on 
+                <span class="text-indigo-600 font-bold">BU|Repo.</span> Check your email for a detailed report and how to reduce the plagiarized content.
+            </p>
+
+            <p class="hidden"><span class="text-green-600 font-bold"> Congratulations</span>, your work doesn't seem to have much plagiarized content. It has been uploaded succesfully on 
+                <span class="text-indigo-600 font-bold">BU|Repo.</span> Check your email for a detailed report.
+            </p>
+        <!-- Plagiarism Score-->
+        <!-- Value of plagiarism percentage is in x-data, "percent: value" -->
+        <div class="mt-12 ">
+        <div class="grid grid-rows-1 gap-20 lg:grid-rows-2 lg:gap-10">
+            <div class="flex items-center flex-wrap max-w-md px-10 bg-white shadow-xl rounded-2xl h-20 mb-6"
+            x-data="{ circumference: 50 * 2 * Math.PI, percent: 50 }" 
+            > 
+                <div class="flex items-center justify-center -m-6 overflow-hidden bg-white rounded-full">
+                    <svg class="w-32 h-32 transform translate-x-1 translate-y-1" x-cloak aria-hidden="true">
+                    <circle
+                        class="text-gray-300"
+                        stroke-width="10"
+                        stroke="currentColor"
+                        fill="transparent"
+                        r="50"
+                        cx="60"
+                        cy="60"
+                        />
+                    <!--Uncomment, If score less than 25%-->
+                    <!-- <circle
+                        class="text-green-600"
+                        stroke-width="10"
+                        :stroke-dasharray="circumference"
+                        :stroke-dashoffset="circumference - percent / 100 * circumference"
+                        stroke-linecap="round"
+                        stroke="currentColor"
+                        fill="transparent"
+                        r="50"
+                        cx="60"
+                        cy="60"
+                    /> -->
+
+                    <!--If score greater than 25%-->
+                    <circle
+                        class="text-red-600"
+                        stroke-width="10"
+                        :stroke-dasharray="circumference"
+                        :stroke-dashoffset="circumference - percent / 100 * circumference"
+                        stroke-linecap="round"
+                        stroke="currentColor"
+                        fill="transparent"
+                        r="50"
+                        cx="60"
+                        cy="60"
+                    />
+                    </svg>
+                    <span class="absolute text-2xl text-blue-700" x-text="`${percent}%`"></span>
+                </div>
+                <p class="ml-10 font-medium text-gray-600 sm:text-xl">Matches</p>
+
+                
+            </div>
+            
+            <!-- Citations -->
+            <div class="flex items-center flex-wrap max-w-md px-10 bg-white shadow-xl rounded-2xl h-20"
+            x-data="{ circumference: 50 * 2 * Math.PI, percent: 8 }"
+            >
+                <div class="flex items-center justify-center -m-6 overflow-hidden bg-white rounded-full">
+                    <svg class="w-32 h-32 transform translate-x-1 translate-y-1" x-cloak aria-hidden="true">
+                    <circle
+                        class="text-gray-300"
+                        stroke-width="10"
+                        stroke="currentColor"
+                        fill="transparent"
+                        r="50"
+                        cx="60"
+                        cy="60"
+                        />
+                    <circle
+                        class="text-blue-600"
+                        stroke-width="10"
+                        :stroke-dasharray="circumference"
+                        :stroke-dashoffset="circumference - percent / 100 * circumference"
+                        stroke-linecap="round"
+                        stroke="currentColor"
+                        fill="transparent"
+                        r="50"
+                        cx="60"
+                        cy="60"
+                    />
+
+                   
+                    </svg>
+                    <span class="absolute text-2xl text-blue-700" x-text="`${percent}%`"></span>
+                </div>
+                <p class="ml-10 font-medium text-gray-600 sm:text-xl">Citations</p>
+
+                <!-- <span class="ml-auto text-xl font-medium text-red-600 hidden sm:block">20GB</span> -->
+            </div>
+
+            <!-- References -->
+            <div class="flex items-center flex-wrap max-w-md px-10 bg-white shadow-xl rounded-2xl h-20"
+            x-data="{ circumference: 50 * 2 * Math.PI, percent: 10 }"
+            >
+                <div class="flex items-center justify-center -m-6 overflow-hidden bg-white rounded-full">
+                    <svg class="w-32 h-32 transform translate-x-1 translate-y-1" x-cloak aria-hidden="true">
+                    <circle
+                        class="text-gray-300"
+                        stroke-width="10"
+                        stroke="currentColor"
+                        fill="transparent"
+                        r="50"
+                        cx="60"
+                        cy="60"
+                        />
+                    <circle
+                        class="text-yellow-600"
+                        stroke-width="10"
+                        :stroke-dasharray="circumference"
+                        :stroke-dashoffset="circumference - percent / 100 * circumference"
+                        stroke-linecap="round"
+                        stroke="currentColor"
+                        fill="transparent"
+                        r="50"
+                        cx="60"
+                        cy="60"
+                    />
+                    </svg>
+                    <span class="absolute text-2xl text-blue-700" x-text="`${percent}%`"></span>
+                </div>
+                <p class="ml-10 font-medium text-gray-600 sm:text-xl">References</p>
+
+                <!-- <span class="ml-auto text-xl font-medium text-red-600 hidden sm:block">20GB</span> -->
+            </div>
+        </div>
+        </div>
+
+
+        <div class="fixed bottom-5 right-5 font-bold">
+            Powered by Unicheck
+        </div>
+                </div>
+
+            </div>
+     <!--Illustration-->
+     <div class="">
+        <img src="../static/img/projects/report2.svg" class="h-full mt-40">
+    </div>
+    </div>
+
+    
+</section>
+{% endblock content %}
