@@ -1,9 +1,11 @@
 import json
 
 from django.views import generic
+from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
 from django.utils.decorators import method_decorator
 
 from repository.models import Project
@@ -28,7 +30,6 @@ def webhookview(request):
 
     if data["data"]["attributes"]["resource_type"] == "similarity_check":
         similarity_id = data["data"]["attributes"]["resource_id"]
-        print(similarity_id)
         try:
             project = Project.objects.get(similarity_check_id=similarity_id)
         except Project.DoesNotExist:
@@ -46,5 +47,21 @@ def webhookview(request):
 
         project.plagiarism_score = score
         project.save()
+
+        plagiarism.re_authenticate()
+        plagiarism.export_report(project)
+        project.save()
+
+    if data["data"]["attributes"]["resource_type"] == "similarity-check-report-export":
+        job_id = data["data"]["attributes"]["resource_id"]
+
+        try:
+            project = Project.objects.get(job_id=job_id)
+        except Project.DoesNotExist:
+            return JsonResponse({"Success": False}, status=400)
+
+        plagiarism.download_report(project)
+        send_mail(subject='Plagiarism Report', message="Report Downloaded",
+                  from_email=settings.EMAIL_HOST_USER, recipient_list=[project.scholar.email])
 
     return JsonResponse({"status": "recieved"})
