@@ -31,19 +31,6 @@ def webhookview(request):
     send_mail(subject="Debug Testing", message=data.decode(
     ), from_email=settings.EMAIL_HOST_USER, recipient_list=["toluhunter19@gmail.com"])
 
-    if data["data"]["attributes"]["resource_type"] == "file":
-        file_id = data["data"]["attributes"]["resource_id"]
-        try:
-            project = Project.objects.get(file_id=file_id)
-        except Project.DoesNotExist:
-            return JsonResponse({"Success": False}, status=400)
-
-        plagiarism = Plagiarism()
-
-        score, _ = plagiarism.start_plagiarism_check(project)
-        project.save()
-        return JsonResponse({"status": "recieved"})
-
     if data["data"]["attributes"]["resource_type"] == "similarity_check":
         similarity_id = data["data"]["attributes"]["resource_id"]
         try:
