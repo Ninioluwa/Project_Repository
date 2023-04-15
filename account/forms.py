@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth import get_user_model, authenticate, login
 from django.core.exceptions import ValidationError
+
+from .models import Account
 User = get_user_model()
 
 
@@ -68,6 +70,12 @@ class AccountCreationForm(forms.ModelForm):
     def clean(self):
         if self.cleaned_data["password"] != self.cleaned_data["c_password"]:
             raise ValidationError("Passwords Must Match")
+        
+        if Account.objects.filter(username=self.cleaned_data["username"]).exists():
+            raise ValidationError({"username": "Invalid Username Already exists"})
+
+        if Account.objects.filter(email=self.cleaned_data["email"]).exists():
+            raise ValidationError({"email": "Invalid Email Already exists"})
 
         self.cleaned_data.pop("c_password")
         return self.cleaned_data

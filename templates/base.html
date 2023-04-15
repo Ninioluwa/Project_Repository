@@ -107,7 +107,10 @@
                     clip-rule="evenodd"></path>
             </svg>
             <div class="ml-3 text-sm font-medium mr-4">
-                {{form.non_field_errors}}
+                {{form.non_field_errors}}<br>
+                {% for key, value in form.errors.items %}
+                    {{key}}: {{value}}<br>
+                {% endfor %}
             </div>
             <button onclick="cancelFunction()"
                 class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8">
