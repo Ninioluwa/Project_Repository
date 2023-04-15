@@ -1,7 +1,7 @@
 import json
 
 from django.views import generic
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.csrf import csrf_exempt
@@ -53,17 +53,22 @@ def webhookview(request):
         return JsonResponse({"status": "recieved"})
 
     if data["data"]["attributes"]["resource_type"] == "similarity_check" and data["data"]["attributes"]["event_type"] == "similarity_check_report_exported":
-        send_mail(subject='Plagiarism Report', message=f"Report: {request.body.decode()}",
-                  from_email=settings.EMAIL_HOST_USER, recipient_list=["toluhunter19@gmail.com"])
         link = data["included"][0]["links"]["pdf_report"]
         similarity_id = data["data"]["attributes"]["resource_id"]
         try:
             project = Project.objects.get(similarity_check_id=similarity_id)
         except Project.DoesNotExist:
             return JsonResponse({"Success": False}, status=400)
-        send_mail(subject='Plagiarism Report', message=f"Report Downloaded link:{link}, similarity:{similarity_id}",
-                  from_email=settings.EMAIL_HOST_USER, recipient_list=[project.scholar.email])
 
-        plagiarism.download_report(project, link)
+        response = plagiarism.download_report(project, link)
+
+        mail = EmailMessage(
+            "Plagiarism Report",
+            "Report can be found as an attachement below",
+            settings.EMAIL_HOST_USER,
+            [project.scholar.email],
+        )
+        mail.attach('report.pdf', response.content)
+        mail.send(fail_silently=False)
 
     return JsonResponse({"status": "recieved"})

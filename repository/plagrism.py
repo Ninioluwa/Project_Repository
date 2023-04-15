@@ -121,13 +121,7 @@ class Plagiarism:
         self.headers.pop("Accept")
         response = requests.get(link, headers=self.headers, stream=True)
 
-        base_path = os.path.join(BASE_DIR, "static", "media",
-                                 "repo", instance.project_id)
-        path = os.path.join(base_path, "report.pdf")
-        os.makedirs(base_path, exist_ok=True)
-
-        with open(path, "wb") as file:
-            file.write(response.content)
+        return response
 
     def delete_downloaded_report(self, instance):
         base_path = os.path.join(BASE_DIR, "static", "media",
