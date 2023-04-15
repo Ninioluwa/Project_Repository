@@ -28,14 +28,13 @@ def webhookview(request):
     except:
         return JsonResponse({"Success": False}, status=400)
 
+    plagiarism = Plagiarism()
     if data["data"]["attributes"]["resource_type"] == "similarity_check" and data["data"]["attributes"]["event_type"] == "similarity_check_finished":
         similarity_id = data["data"]["attributes"]["resource_id"]
         try:
             project = Project.objects.get(similarity_check_id=similarity_id)
         except Project.DoesNotExist:
             return JsonResponse({"Success": False}, status=400)
-
-        plagiarism = Plagiarism()
 
         score, _ = plagiarism.fetch_plagiarism_details(project)
 
