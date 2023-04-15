@@ -28,6 +28,19 @@ def webhookview(request):
     except:
         return JsonResponse({"Success": False}, status=400)
 
+    if data["data"]["attributes"]["resource_type"] == "file":
+        file_id = data["data"]["attributes"]["resource_id"]
+        try:
+            project = Project.objects.get(file_id=file_id)
+        except Project.DoesNotExist:
+            return JsonResponse({"Success": False}, status=400)
+
+        plagiarism = Plagiarism()
+
+        score, _ = plagiarism.start_plagiarism_check(project)
+        project.save()
+        return JsonResponse({"status": "recieved"})
+
     if data["data"]["attributes"]["resource_type"] == "similarity_check":
         similarity_id = data["data"]["attributes"]["resource_id"]
         try:
@@ -51,6 +64,7 @@ def webhookview(request):
         plagiarism.re_authenticate()
         plagiarism.export_report(project)
         project.save()
+        return JsonResponse({"status": "recieved"})
 
     if data["data"]["attributes"]["resource_type"] == "similarity-check-report-export":
         job_id = data["data"]["attributes"]["resource_id"]
