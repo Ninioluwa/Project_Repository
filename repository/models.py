@@ -108,7 +108,6 @@ class Project(models.Model):
         null=True, default=None, max_length=33)
     cover_page = models.ImageField(
         upload_to=set_cover_upload, null=True, default=None)
-    job_id = models.IntegerField(null=True, default=None)
     document = models.FileField(upload_to=set_document_upload, validators=[
                                 FileExtensionValidator(['pdf'])])
     url = models.URLField(null=True)

@@ -50,19 +50,19 @@ def webhookview(request):
 
         plagiarism.re_authenticate()
         plagiarism.export_report(project)
-        project.save()
         return JsonResponse({"status": "recieved"})
 
     if data["data"]["attributes"]["resource_type"] == "similarity_check" and data["data"]["attributes"]["event_type"] == "similarity_check_report_exported":
-        job_id = data["data"]["attributes"]["resource_id"]
-
+        link = data["included"]["links"]["pdf_report"]
+        similarity_id = data["data"]["attributes"]["resource_id"]
         try:
-            project = Project.objects.get(job_id=job_id)
+            project = Project.objects.get(similarity_check_id=similarity_id)
         except Project.DoesNotExist:
             return JsonResponse({"Success": False}, status=400)
+
+        plagiarism.download_report(project, link)
+
         send_mail(subject='Plagiarism Report', message="Report Downloaded",
                   from_email=settings.EMAIL_HOST_USER, recipient_list=[project.scholar.email])
-
-        plagiarism.download_report(project)
 
     return JsonResponse({"status": "recieved"})

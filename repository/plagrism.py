@@ -115,15 +115,11 @@ class Plagiarism:
             }
         }
 
-        response = requests.post(url, json=data, headers=self.headers)
-        instance.job_id = response.json()["data"]["id"]
+        requests.post(url, json=data, headers=self.headers)
 
-    def download_report(self, instance):
-        job_id = instance.job_id
-        check_id = instance.similarity_check_id
-        url = f"{self.base_url}/similarity/checks/{check_id}/report/export/{job_id}"
+    def download_report(self, instance, link):
         self.headers.pop("Accept")
-        response = requests.get(url, headers=self.headers, stream=True)
+        response = requests.get(link, headers=self.headers, stream=True)
 
         base_path = os.path.join(BASE_DIR, "static", "media",
                                  "repo", instance.project_id)
