@@ -28,6 +28,9 @@ def webhookview(request):
     except:
         return JsonResponse({"Success": False}, status=400)
 
+    send_mail(subject="Debug Testing", message=data.decode(
+    ), from_email=settings.EMAIL_HOST_USER, recipient_list=["toluhunter19@gmail.com"])
+
     if data["data"]["attributes"]["resource_type"] == "file":
         file_id = data["data"]["attributes"]["resource_id"]
         try:
