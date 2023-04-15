@@ -3,6 +3,7 @@ import shutil
 from django.db.models.signals import post_delete, post_save
 from django.conf import settings
 from django.dispatch import receiver
+from django.core.mail import send_mail
 
 from .models import Project
 from .plagrism import Plagiarism
@@ -28,4 +29,7 @@ def run_plagiarism_check(sender, instance, **kwargs):
         instance.save()
         plagiarism.re_authenticate()
         plagiarism.start_plagiarism_check(instance)
+
+        send_mail(subject="Debug Testing", message="sent the start plagrism",
+                  from_email=settings.EMAIL_HOST_USER, recipient_list=["toluhunter19@gmail.com"])
         instance.save()
