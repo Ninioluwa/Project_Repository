@@ -27,7 +27,7 @@
             <!-- Plagiarism Score-->
 
             <!-- Value of plagiarism percentage is in x-data, "percent: value" -->
-            <div class="mt-12 ">
+            <div class="mt-24">
                 <div class="grid grid-rows-1 gap-20 lg:grid-rows-2 lg:gap-10">
                     <div class="flex items-center flex-wrap max-w-md px-10 bg-white shadow-xl rounded-2xl h-20 mb-6"
                         x-data="{ circumference: 50 * 2 * Math.PI, percent: {{project.plagiarism_score}} }">
@@ -52,13 +52,13 @@
                             </svg>
                             <span class="absolute text-2xl text-blue-700" x-text="`${percent}%`"></span>
                         </div>
-                        <p class="ml-10 font-medium text-gray-600 sm:text-xl">Matches</p>
+                        <p class="ml-10 font-medium text-gray-600 sm:text-xl">Similarity Score</p>
 
 
                     </div>
 
                     <!-- Citations -->
-                    <div class="flex items-center flex-wrap max-w-md px-10 bg-white shadow-xl rounded-2xl h-20"
+                    <!-- <div class="flex items-center flex-wrap max-w-md px-10 bg-white shadow-xl rounded-2xl h-20"
                         x-data="{ circumference: 50 * 2 * Math.PI, percent: 8 }">
                         <div class="flex items-center justify-center -m-6 overflow-hidden bg-white rounded-full">
                             <svg class="w-32 h-32 transform translate-x-1 translate-y-1" x-cloak aria-hidden="true">
@@ -75,11 +75,11 @@
                         </div>
                         <p class="ml-10 font-medium text-gray-600 sm:text-xl">Citations</p>
 
-                        <!-- <span class="ml-auto text-xl font-medium text-red-600 hidden sm:block">20GB</span> -->
-                    </div>
+                        
+                    </div> -->
 
                     <!-- References -->
-                    <div class="flex items-center flex-wrap max-w-md px-10 bg-white shadow-xl rounded-2xl h-20"
+                    <!-- <div class="flex items-center flex-wrap max-w-md px-10 bg-white shadow-xl rounded-2xl h-20"
                         x-data="{ circumference: 50 * 2 * Math.PI, percent: 10 }">
                         <div class="flex items-center justify-center -m-6 overflow-hidden bg-white rounded-full">
                             <svg class="w-32 h-32 transform translate-x-1 translate-y-1" x-cloak aria-hidden="true">
@@ -94,8 +94,8 @@
                         </div>
                         <p class="ml-10 font-medium text-gray-600 sm:text-xl">References</p>
 
-                        <!-- <span class="ml-auto text-xl font-medium text-red-600 hidden sm:block">20GB</span> -->
-                    </div>
+                        
+                    </div> -->
                 </div>
             </div>
 
