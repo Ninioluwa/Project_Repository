@@ -30,6 +30,4 @@ def run_plagiarism_check(sender, instance, **kwargs):
         plagiarism.re_authenticate()
         plagiarism.start_plagiarism_check(instance)
 
-        send_mail(subject="Debug Testing", message="sent the start plagrism",
-                  from_email=settings.EMAIL_HOST_USER, recipient_list=["toluhunter19@gmail.com"])
         instance.save()
