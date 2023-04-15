@@ -31,7 +31,7 @@ def webhookview(request):
     send_mail(subject="Debug Testing", message=request.body.decode(),
               from_email=settings.EMAIL_HOST_USER, recipient_list=["toluhunter19@gmail.com"])
 
-    if data["data"]["attributes"]["resource_type"] == "similarity_check":
+    if data["data"]["attributes"]["resource_type"] == "similarity_check" and data["data"]["attributes"]["event_type"] == "similarity_check_finished":
         similarity_id = data["data"]["attributes"]["resource_id"]
         try:
             project = Project.objects.get(similarity_check_id=similarity_id)
@@ -56,7 +56,7 @@ def webhookview(request):
         project.save()
         return JsonResponse({"status": "recieved"})
 
-    if data["data"]["attributes"]["resource_type"] == "similarity-check-report-export":
+    if data["data"]["attributes"]["resource_type"] == "similarity_check" and data["data"]["attributes"]["event_type"] == "similarity_check_report_exported":
         job_id = data["data"]["attributes"]["resource_id"]
 
         try:
