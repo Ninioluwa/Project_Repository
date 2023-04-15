@@ -25,6 +25,7 @@ def run_plagiarism_check(sender, instance, **kwargs):
     if kwargs["created"]:
         plagiarism = Plagiarism()
         plagiarism.upload_file(instance)
+        instance.save()
         plagiarism.re_authenticate()
         plagiarism.start_plagiarism_check(instance)
         instance.save()
