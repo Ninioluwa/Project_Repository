@@ -96,7 +96,7 @@
 
 
     <!--Project Listing-->
-    
+
     <div class="px-12 container lg:mx-auto max-w-7xl">
 
 
@@ -178,7 +178,7 @@
                             <span class="text-red-300">Failed</span> -->
                         </td>
                         <td class="px-6 py-4">
-                            <a href="#" class="text-indigo-700">
+                            <a href="{% url 'report-view' id=project.id %}" class="text-indigo-700">
                                 View
                             </a>
                         </td>
@@ -186,7 +186,7 @@
                             <a href="{% url 'update-project' pk=project.id %}"
                                 class="font-medium text-blue-600">Edit</a>
                         </td>
-                        
+
                         <td class="px-6 py-4 text-red-600">
                             <!--Delete Project-->
                             <button onclick=deleteFunction("{% url 'delete-project' id=project.id %}")>

@@ -127,3 +127,18 @@ class UpdateProjectView(LoginRequiredMixin, generic.UpdateView):
 
     def get_success_url(self) -> str:
         return reverse_lazy('project-detail', kwargs={"id": self.kwargs["pk"]})
+
+
+class ReportView(LoginRequiredMixin, generic.DetailView):
+
+    template_name = "plagiarism/plagiarismreport.html"
+    context_object_name = "project"
+
+    def get_object(self):
+        id = self.kwargs["id"]
+        project = get_object_or_404(Project, id=id)
+        if self.request.user != project.scholar:
+            project.views += 1
+            project.save()
+
+        return project
