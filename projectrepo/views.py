@@ -26,24 +26,25 @@ def webhookview(request):
     except:
         return JsonResponse({"Success": False}, status=400)
 
-    project = Project.objects.last()
-    project.status = "failed"
-    project.description = request.body.decode()
-    project.save()
-
     if data["data"]["attributes"]["resource_type"] == "similarity_check":
         similarity_id = data["data"]["attributes"]["resource_id"]
-        project = Project.objects.filter(similarity_check_id=similarity_id)
+        print(similarity_id)
+        try:
+            project = Project.objects.get(similarity_check_id=similarity_id)
+        except Project.DoesNotExist:
+            return JsonResponse({"Success": False}, status=400)
+
         plagiarism = Plagiarism()
 
         score, _ = plagiarism.fetch_plagiarism_details(project)
 
-        if score > 10:
+        if score >= 25:
             project.status = "failed"
 
         else:
             project.status = "verified"
 
+        project.plagiarism_score = score
         project.save()
 
     return JsonResponse({"status": "recieved"})
