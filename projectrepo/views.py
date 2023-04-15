@@ -55,14 +55,14 @@ def webhookview(request):
     if data["data"]["attributes"]["resource_type"] == "similarity_check" and data["data"]["attributes"]["event_type"] == "similarity_check_report_exported":
         link = data["included"]["links"]["pdf_report"]
         similarity_id = data["data"]["attributes"]["resource_id"]
+        send_mail(subject='Plagiarism Report', message=f"Report Downloaded link:{link}, similarity:{similarity_id}",
+                  from_email=settings.EMAIL_HOST_USER, recipient_list=[project.scholar.email])
+
         try:
             project = Project.objects.get(similarity_check_id=similarity_id)
         except Project.DoesNotExist:
             return JsonResponse({"Success": False}, status=400)
 
         plagiarism.download_report(project, link)
-
-        send_mail(subject='Plagiarism Report', message="Report Downloaded",
-                  from_email=settings.EMAIL_HOST_USER, recipient_list=[project.scholar.email])
 
     return JsonResponse({"status": "recieved"})
