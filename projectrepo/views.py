@@ -28,9 +28,6 @@ def webhookview(request):
     except:
         return JsonResponse({"Success": False}, status=400)
 
-    send_mail(subject="Debug Testing", message=request.body.decode(),
-              from_email=settings.EMAIL_HOST_USER, recipient_list=["toluhunter19@gmail.com"])
-
     if data["data"]["attributes"]["resource_type"] == "similarity_check" and data["data"]["attributes"]["event_type"] == "similarity_check_finished":
         similarity_id = data["data"]["attributes"]["resource_id"]
         try:
@@ -63,9 +60,9 @@ def webhookview(request):
             project = Project.objects.get(job_id=job_id)
         except Project.DoesNotExist:
             return JsonResponse({"Success": False}, status=400)
-
-        plagiarism.download_report(project)
         send_mail(subject='Plagiarism Report', message="Report Downloaded",
                   from_email=settings.EMAIL_HOST_USER, recipient_list=[project.scholar.email])
+
+        plagiarism.download_report(project)
 
     return JsonResponse({"status": "recieved"})
