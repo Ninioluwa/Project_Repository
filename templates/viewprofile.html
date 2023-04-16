@@ -56,7 +56,7 @@
 <!--End Delete Project-->
 <section class="">
 
-    <div class="flex space-x-4 items-center mt-12 bg-indigo-300 px-4 py-2 rounded-lg mx-auto max-w-2xl">
+    <div class="flex space-x-4 items-center mt-12 bg-indigo-300 px-4 py-2 rounded-lg mx-12 mb-4 lg:mx-auto max-w-2xl">
         <div>
             {% if account.profile_picture %}
             <img class="w-24 h-24 mt-6 rounded-full border" src="{{account.profile_picture.url}}" />
@@ -68,7 +68,7 @@
 
         <div class="mt-8">
             <p class="font-bold text-white text-xl">{{account.get_full_name}}
-                <span class="ml-24 md:ml-56">
+                <span class="md:ml-56">
                     {% if user == account %}
                     <a href="{% url 'edit-profile'%}"
                         class="text-sm text-indigo-500 rounded-lg p-1 bg-indigo-100 hover:bg-indigo-200">
