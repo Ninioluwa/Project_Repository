@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Report</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
+    
+</head>
+<body>
+
+<!-- Section 1 -->
+<section class="w-full px-3 antialiased bg-indigo-600 lg:px-6">
+    <div class="mx-auto max-w-7xl">
+        <nav class="flex items-center w-full h-24 select-none" x-data="{ showMenu: false }">
+            <div class="relative flex flex-wrap items-center justify-between w-full h-24 mx-auto font-medium md:justify-center">
+                <a href="#_" class="w-1/4 py-4 pl-6 pr-4 md:pl-4 md:py-0">
+                    <span class="p-1 text-xl font-black leading-none text-white select-none"><span class="">BU|Repo</span><span class="text-indigo-600">.</span></span>
+                </a>
+                <div class="fixed top-0 left-0 z-40 items-center hidden w-full h-full p-3 text-xl bg-gray-900 bg-opacity-50 md:text-sm lg:text-base md:w-3/4 md:bg-transparent md:p-0 md:relative md:flex" :class="{'flex': showMenu, 'hidden': !showMenu }">
+                    <div class="flex-col w-full h-auto h-full overflow-hidden bg-white rounded-lg select-none md:bg-transparent md:rounded-none md:relative md:flex md:flex-row md:overflow-auto">
+                        <div class="flex flex-col items-center justify-center w-full h-full mt-12 text-center text-indigo-600 md:text-indigo-100 md:w-2/3 md:mt-0 md:flex-row md:items-center">
+                            <a href="index.html" class="inline-block px-4 py-2 mx-2 font-medium text-left text-indigo-600 md:text-white md:px-0 lg:mx-12 md:text-center">Home</a>
+                            <a href="#" class="inline-block px-0 px-4 py-2 mx-2 font-medium text-left md:px-0 hover:text-indigo-600 md:hover:text-white lg:mx-9 md:text-center">About</a>
+                            <a href="searchproject.html" class="inline-block px-0 px-4 py-2 mx-2 font-medium text-left md:px-0 hover:text-indigo-600 md:hover:text-white lg:mx-9 md:text-center">Projects</a>
+                            <a href="createproject.html" class="inline-block px-0 px-4 py-2 mx-2 font-medium text-left md:px-0 hover:text-indigo-600 md:hover:text-white lg:mx-9 md:text-center">Upload</a>
+                            <a href="login.html" class="md:hidden inline-block px-0 px-4 py-2 mx-2 font-medium text-left md:px-0 hover:text-indigo-600 md:hover:text-white lg:mx-9 md:text-center">Sign-in</a>
+                            <a href="register.html" class="md:hidden inline-block px-0 px-4 py-2 mx-2 font-medium text-left md:px-0 hover:text-indigo-600 md:hover:text-white lg:mx-3 md:text-center">Sign-up</a>
+                            <div class="flex flex-col items-center justify-end w-full h-full pt-4 md:w-1/3 md:hidden md:py-0">
+                                <a href="login.html" class="w-full pl-6 mr-0 text-indigo-200 hover:text-white md:pl-0 md:mr-3 lg:mr-5 md:w-auto">Sign In</a>
+                                <a href="register.html" class="inline-flex items-center justify-center px-4 py-2 mr-1 text-base font-medium leading-6 text-indigo-600 whitespace-no-wrap transition duration-150 ease-in-out bg-white border border-transparent hover:bg-white focus:outline-none focus:border-indigo-700 focus:shadow-indigo-NaN active:bg-indigo-700 rounded-none rounded-full">Sign Up</a>
+                            </div>
+                            
+                         </div>
+                         <div class=" flex flex-col items-center justify-end w-full h-full pt-4 md:w-1/3 md:flex-row md:py-0">
+                            <img class="w-8 h-8 rounded-full ml-12" src="../static/img/home/avatar.png">
+                            <p class="text-white font-bold text-lg ml-2"> Welcome, Ninioluwa!</p>
+                                
+                            <!-- <a href="login.html" class="w-full pl-6 mr-0 text-indigo-200 hover:text-white md:pl-0 md:mr-3 lg:mr-5 md:w-auto">Sign In</a>
+                            <a href="register.html" class="inline-flex items-center justify-center px-4 py-2 mr-1 text-base font-medium leading-6 text-indigo-600 whitespace-no-wrap transition duration-150 ease-in-out bg-white border border-transparent hover:bg-white focus:outline-none focus:border-indigo-700 focus:shadow-indigo-NaN active:bg-indigo-700 rounded-none rounded-full">Sign Up</a> -->
+                        </div>
+                        
+                    </div>
+
+                    
+                </div>
+                <div @click="showMenu = !showMenu" class="absolute right-0 z-50 flex flex-col items-end w-10 h-10 p-2 mr-4 rounded-full cursor-pointer md:hidden hover:bg-gray-900 hover:bg-opacity-10 text-gray-100" :class="{ 'text-gray-400': showMenu, 'text-gray-100': !showMenu }">
+                    <svg class="w-6 h-6" x-show="!showMenu" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                        <path d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg class="w-6 h-6" x-show="showMenu" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </div>
+            </div>
+        </nav>
+    </div>
+</section>
+
+<section class="flex justify-between container mx-auto lg:mt-12 justify-between mb-10">
+    <div class="w-1/2">
+        <h1 class="font-extrabold text-5xl mb-6"> About <span class="text-indigo-500 font-white ">BU|Repo.</span></h1>
+        <p class="text-justify font-bold text-lg">
+            Welcome to <span class="text-indigo-500">BU|Repo</span>, the web-based digital repository that streamlines the research process for scholars and researchers alike. Our platform allows users to easily upload and access dissertations, providing a comprehensive resource for advancing knowledge and driving innovation in related fields of study.
+        </p>
+        <br>
+        <p class="text-justify font-bold text-lg">
+            At <span class="text-indigo-500">BU|Repo</span>, we understand that research is a collaborative effort. Our built-in plagiarism checker ensures that all content is original and trustworthy, while our powerful search tools enable users to quickly and easily locate relevant works. Whether you're a student working on your thesis or a seasoned researcher looking to expand your knowledge, <span class="text-indigo-500">BU|Repo</span> is the ultimate resource for scholarly pursuits.
+        </p>
+        <br>
+        <p class="text-justify font-bold text-lg">
+            Our commitment to excellence extends beyond our platform. We take great pride in providing exceptional customer service, ensuring that our users always have the support they need to achieve their research goals. With <span class="text-indigo-500">BU|Repo</span>, you can focus on what really matters - advancing knowledge and making a meaningful impact in your field of study.
+        </p>
+
+    </div>
+
+    <div class="hidden md:flex justify-center items-center">
+        <img src="../static/img/home/about.svg" class="h-full w-1/2">
+
+    </div>
+
+</section>
+
+<section class="flex flex-col md:flex-row justify-between container mx-auto space-x-5">
+    <div class="bg-indigo-500 shadow-md p-6 text-white w-1/3 rounded-lg">
+        <div class="rounded-full p-2 font-extrabold text-center text-xl">1</div>
+        <p class="font-bold text-center">
+        With the upload functionality of bu|repo, users can easily add their research work to our digital repository, making it accessible to scholars from different institutions. 
+        Our platform supports only pdf file format.
+        </p>
+    </div>
+
+    <div class="bg-indigo-500 shadow-md p-6 text-white w-1/3 rounded-lg">
+        <div class="rounded-full p-2 font-extrabold text-center text-xl">2</div>
+        <p class="font-bold text-center">
+            The search functionality of bu|repo allows users to quickly and easily locate relevant research work within our extensive digital repository. 
+            Users can search search by keyword, author, title, and other criteria.
+    </div>
+
+    <div class="bg-indigo-500 shadow-md p-6 text-white w-1/3 rounded-lg">
+        <div class="rounded-full p-2 font-extrabold text-center text-xl">3</div>
+        <p class="font-bold text-center">
+            Our built-in plagiarism checker makes it easy for users to ensure the originality and integrity of their work.
+           and view a comprehensive report of the results in their mail inbox.
+        </p>
+    </div>
+
+    <div class="fixed bottom-5 right-5 font-bold">
+        Powered by Unicheck
+    </div>
+</section>
+
+
+</body>
+</html>
