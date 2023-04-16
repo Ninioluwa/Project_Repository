@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse_lazy
+from django.shortcuts import render
 
 from .forms import ProjectForm, UpdateProjectForm
 from .models import Project, Tag
@@ -142,3 +143,7 @@ class ReportView(LoginRequiredMixin, generic.DetailView):
             project.save()
 
         return project
+
+def AboutView(request):
+    return render(request, 'about.html', {})
+
