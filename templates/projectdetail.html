@@ -3,16 +3,15 @@
 
 {% block content %}
 <!-- Search Bar -->
-<section class="px-3 mx-auto max-w-7xl ">
+<section class="hidden md:block px-3 md:mx-auto max-w-7xl">
     <div class="mt-4 pt-2 relative text-gray-600 ">
         <form action="{% url 'display-projects' %}" class="lg:flex">
             <select name="filter" id="filter"
                 class="p-1 mr-2 h-10 border-2 rounded-lg bg-white text-gray-500 font-bold rounded-lg outline-none border-gray-300 focus:border-indigo-700">
                 <option class="hover:bg-gray-300" value="title">Title</option>
-                <option value="department">Course</option>
+                <option value="department">Department</option>
                 <option value="year">Year</option>
                 <option value="supervisor">Supervisor</option>
-                <option value="tag">Tag</option>
             </select>
 
             <div>
@@ -32,14 +31,48 @@
 
         </form>
 
-
-
-
     </div>
 </section>
+<!--End Search Bar -->
 
 <!-- Section 2 -->
-<section class="bg-white">
+<section class="mx-4">
+
+        <!-- Search Bar -->
+        <section class="md:hidden max-w-7xl">
+            <div class="mt-4 pt-2 relative text-gray-600 ">
+                <form action="{% url 'display-projects' %}" class="lg:flex">
+                    <select name="filter" id="filter"
+                        class="p-1 mr-2 mb-2 w-full h-10 border-2 rounded-lg bg-white text-gray-500 font-bold rounded-lg outline-none border-gray-300 focus:border-indigo-700">
+                        <option class="hover:bg-gray-300" value="title">Title</option>
+                        <option value="department">Department</option>
+                        <option value="year">Year</option>
+                        <option value="supervisor">Supervisor</option>
+                    </select>
+    
+                    <div>
+                        <input
+                            class="mb-2 border-2 border-gray-300 bg-white w-full h-10 mr-4 px-5 pr-4 rounded-lg text-sm focus:border-indigo-700 hover:bg-indigo-100 outline-none"
+                            type="search" name="search" placeholder="Search" size="33">
+                        <button type="submit"
+                            class="absolute top-12 mt-5 right-2 outline-none hover:bg-indigo-300 rounded-full">
+                            <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
+                                viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;"
+                                xml:space="preserve" width="512px" height="512px">
+                                <path
+                                    d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
+                            </svg>
+                        </button>
+                    </div>
+    
+    
+    
+                </form>
+    
+            </div>
+        </section>
+        <!--End Search Bar -->
     <div class="w-full py-6 mx-auto space-y-5 sm:py-8 md:py-12 sm:space-y-8 md:space-y-16 max-w-7xl">
 
         <div class="flex flex-col items-center sm:px-5 md:flex-row">
@@ -105,7 +138,8 @@
 
             <div class="w-full lg:mb-4 leading-relaxed">
                 <p class="font-bold text-2xl">Project Description</p>
-                {{project.description}}
+                <p class="text-justify">{{project.description}}</p>
+                
 
             </div>
 
