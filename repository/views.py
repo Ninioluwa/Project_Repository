@@ -70,7 +70,7 @@ class DisplayProjectView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["latest"] = Project.objects.all().order_by(
+        context["latest"] = Project.objects.filter(status="verified").order_by(
             'date_uploaded').last()
 
         return context
@@ -144,6 +144,6 @@ class ReportView(LoginRequiredMixin, generic.DetailView):
 
         return project
 
+
 def AboutView(request):
     return render(request, 'about.html', {})
-
