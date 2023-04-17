@@ -26,6 +26,7 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     # 'whitenoise.runserver_nostatic',
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -174,3 +175,23 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = int(os.getenv("EMAIL_PORT"))
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+# JAZZMIN SETTINGS
+JAZZMIN_SETTINGS = {
+    "site_header": "BU|Repo",
+    "welcome_sign": "Welcome to BU|Repo",
+    "search_model": [
+        "account.User",
+        "account.Institution",
+        "repository.Project"
+    ],
+    "copyright": "BU|Repo",
+    "site_title": "BU|Repo Admin",
+    "site_brand": "BU|Repo",
+    "show_ui_builder": True,
+    "login_logo": None,
+    "site_icon": None,
+
+
+
+}

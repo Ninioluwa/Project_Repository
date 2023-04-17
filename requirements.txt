@@ -24,3 +24,4 @@ sqlparse==0.4.3
 tomli==2.0.1
 urllib3==1.26.15
 whitenoise==6.4.0
+django-jazzmin==2.6.0
