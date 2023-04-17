@@ -3,7 +3,7 @@
 {% block content %}
 
 <!--Alert to Delete Project-->
-<div class="w-1/2 flex items-center" id="delete_project" style="display:none">
+<div class="w-1/2 flex items-center justify-center" id="delete_project" style="display:none">
     <div class="flex p-4 mb-4 text-red-800 border-t-4 border-red-400 bg-red-100">
         <svg class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd"
@@ -67,7 +67,7 @@
         </div>
 
         <div class="mt-8 relative">
-            <span class="md:hidden absolute -top-6 right-0 font-bold">
+            <span class="absolute -top-6 md:top-0 right-0 font-bold">
                 {% if user == account %}
                 <a href="{% url 'edit-profile'%}"
                     class="text-sm text-indigo-500 rounded-lg p-1 bg-indigo-100 hover:bg-indigo-200">
@@ -76,7 +76,7 @@
                 {% endif %}
             </span>
             <p class="font-bold text-white text-xl">{{account.get_full_name}}
-                <span class="hidden md:inline md:ml-56">
+                <span class="hidden md:ml-56">
                     {% if user == account %}
                     <a href="{% url 'edit-profile'%}"
                         class="text-sm text-indigo-500 rounded-lg p-1 bg-indigo-100 hover:bg-indigo-200">
@@ -92,7 +92,7 @@
                 <br>
                 <span class="">Email:</span>
                 <span class="">{{account.email}}</span>
-                
+
             </p>
 
         </div>
@@ -182,7 +182,7 @@
                         {% if user == account %}
                         <td class="px-6 py-4">
                             <!--Plagiarism Check Status-->
-                            <span class="text-green-500">{{project.status}}</span>
+                            <span class="text-green-500 capitalize">{{project.status}}</span>
                             <!-- <span class="text-blue-300">Pending</span>
                             <span class="text-red-300">Failed</span> -->
                         </td>

@@ -50,10 +50,10 @@ def webhookview(request):
         score, res = plagiarism.fetch_plagiarism_details(project)
 
         if score >= 25:
-            project.status = "Failed"
+            project.status = "failed"
 
         else:
-            project.status = "Verified"
+            project.status = "verified"
 
         project.plagiarism_score = score
         project.save()
