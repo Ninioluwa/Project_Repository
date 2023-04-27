@@ -117,7 +117,7 @@ class UpdateProjectView(LoginRequiredMixin, generic.UpdateView):
     form_class = UpdateProjectForm
 
     def get_queryset(self):
-        return Project.objects.filter(scholar=self.request.user)
+        return Project.objects.filter(scholar=self.request.user, active=True)
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
