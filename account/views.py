@@ -1,3 +1,4 @@
+from typing import Any, Dict
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth import logout
@@ -39,6 +40,10 @@ class ProfileView(LoginRequiredMixin, generic.DetailView):
         id = self.kwargs["id"]
 
         return get_object_or_404(Account, id=id)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["projects"] = self.request.user.projects.filter(active=True)
 
 
 class UpdateProfileView(LoginRequiredMixin, generic.FormView):
