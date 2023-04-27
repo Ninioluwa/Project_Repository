@@ -91,6 +91,7 @@ class Project(models.Model):
     scholar = models.ForeignKey(
         to=User, on_delete=models.SET_NULL, null=True, related_name="projects")
     description = models.TextField(null=False, blank=False)
+    active = models.BooleanField(null=False, blank=False, default=True)
     status = models.CharField(
         choices=[
             ("pending", "Pending"),

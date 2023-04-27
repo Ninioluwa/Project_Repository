@@ -37,7 +37,7 @@ class DisplayProjectView(generic.ListView):
 
     def get_queryset(self):
         filter = self.request.GET.get("filter", None)
-        queryset = Project.objects.filter(status="verified")
+        queryset = Project.objects.filter(status="verified", active=True)
         if not filter:
             return queryset.order_by('date_uploaded')
 
