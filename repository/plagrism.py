@@ -61,7 +61,7 @@ class Plagiarism:
                 "attributes": {
                     "search_types": {
                         "web": True,
-                        "library": False
+                        "library": True
                     },
                     "parameters": {
                         "exclude": {
