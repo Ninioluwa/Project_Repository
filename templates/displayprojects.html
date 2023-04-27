@@ -122,11 +122,20 @@
                             <!--Number of views-->
                             <span>{{latest.views}} Views</span>
                         </div>
+                        {% if latest.plagiarism_score > 25 %}
+                        <div
+                            class="bg-red-500 flex items-center px-3 py-1.5 leading-none rounded-full text-xs font-bold uppercase text-white inline-block">
+                            <!--Plagiarism Checker-->
+                            <span>{{latest.plagiarism_score}}%</span>
+                        </div>
+                        {% else %}
                         <div
                             class="bg-green-500 flex items-center px-3 py-1.5 leading-none rounded-full text-xs font-bold uppercase text-white inline-block">
                             <!--Plagiarism Checker-->
                             <span>{{latest.plagiarism_score}}%</span>
                         </div>
+                        {% endif %}
+
                     </div>
 
                 </div>
@@ -148,12 +157,20 @@
                     </span>
 
                     <div class="flex ">
-
+                        {% if project.plagiarism_score > 25 %}
+                        <div
+                            class="bg-red-500 flex items-center px-3 py-1.5 leading-none rounded-full text-xs font-bold text-white inline-block">
+                            <!--Plagiarism Score-->
+                            <span>{{project.plagiarism_score}}%</span>
+                        </div>
+                        {% else %}
                         <div
                             class="bg-green-500 flex items-center px-3 py-1.5 leading-none rounded-full text-xs font-bold text-white inline-block">
                             <!--Plagiarism Score-->
                             <span>{{project.plagiarism_score}}%</span>
                         </div>
+                        {% endif %}
+
                     </div>
                 </div>
                 <!--Project Title-->
