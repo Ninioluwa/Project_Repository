@@ -45,6 +45,8 @@ class ProfileView(LoginRequiredMixin, generic.DetailView):
         context = super().get_context_data(**kwargs)
         context["projects"] = self.request.user.projects.filter(active=True)
 
+        return context
+
 
 class UpdateProfileView(LoginRequiredMixin, generic.FormView):
     template_name = "updateprofile.html"
